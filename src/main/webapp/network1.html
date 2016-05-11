@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>分布式实时监控中心</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		
+		<!--easyui-->
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	
+	
+	<!-- network -->
+		<script src="network/asset/js/esl/esl.js"></script>
+		<script src="network/asset/js/codemirror.js"></script>
+		<script src="network/asset/js/javascript.js"></script>
+        <script src="./asset/js/ScriptEngine.js"></script>
+		<link href="network/asset/css/bootstrap.css" rel="stylesheet">
+		<link href="network/asset/css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="network/asset/css/codemirror.css" rel="stylesheet">
+		<link href="network/asset/css/monokai.css" rel="stylesheet">
+		<link href="network/asset/css/echartsHome.css" rel="stylesheet">
+		<link href="network/asset/css/zTreeStyle.css" rel="stylesheet">
+        <link rel="stylesheet" href="network/css/network.css">
+		<!-- jieshu-->
+	
+   
+	
+	
+    <!-- start: CSS -->
+   
+   
+    <link href="assets/css/retina.min.css" rel="stylesheet">
+    
+    <!-- end: CSS -->
+
+    <!--index CSS -->
+    
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/color.css" />
+   
+
+    <link rel="stylesheet" href="assets/styles/all.css"/>
+	<!--
+    <link href="assets/default.css" type="text/css" rel="stylesheet" />
+   -->
+
+
+
+	<!-- gyy add start-->
+	<!-- Basic Styles -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+	<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.css">
+	
+
+	
+	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+	
+
+	<!-- FAVICONS -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+	<!-- GOOGLE FONT -->
+	
+
+	<!-- gyy add end -->
+
+	<style type="text/css">
+		.widget-body #site-stats .legend {position: absolute;top: 0px;left: 185px;}
+		body{overflow:auto}
+	</style>
+
+
+</head>
+<body style="min-width: 1200px; height:100%;background-color:transparent;min-height:519px;overflow:scroll;overflow:hidden;">
+
+		
+
+
+	<!--tab begin-->
+<!--
+	<div id="tt" class="easyui-tabs" style="width:100%;height:600px;opacity:1;" >
+	
+		<div title="物理视图" data-options="closable:true" style="padding:10px">
+	-->		
+			<div class="easyui-layout" style="width:100%;height:100%;opacity:1;">
+				<div data-options="region:'east',split:true"  style="width:14%;height:400px;">
+
+					 <div class="data-tree-2" id="data-network" >
+					
+							<div class="center-service" style="padding-left:0;height:292px; width:248px;border-radius:0 0 5px 5px;display: block;">
+							 <div style="width:10%;height:292px;float:left;margin-bottom:4px;background: url(img/shuxing.png);">
+									  <div style="line-height:20px;padding-top:48px;padding-left:5px" id="network-name">属性信息</div>
+									   <img src="img/youjiao.png" alt style="margin-top:137px" >
+									  <img>
+								   </div>
+								<table class="table-info" style="border-spacing:0;width:90%;max-width:100%;float:right;background-color: transparent;border-collapse: collapse;">
+								<!--
+									<thead class="tree-header2">
+										<tr><td style="padding-left: 15px">#</td><td style="padding-left: 5px">目标</td><td>目标值</td></tr>
+									</thead>
+								-->
+									<tbody>
+									   <tr><td style="padding-left: 5px" class="td11">属性</td><td class="td12">属性值</td></tr>
+										<tr><td style="padding-left: 5px" class="td21">中心数量</td><td class="td22">3</td></tr>
+										<tr><td style="padding-left: 5px" class="td31">当前中心</td><td class="td32">192.168.3.1</td></tr>
+										<tr><td style="padding-left: 5px" class="td41">主从中心</td><td class="td42">从中心</td></tr>
+										<tr><td style="padding-left: 5px" class="td51">地理位置</td><td class="td52">北京市大兴区金苑路</td></tr>
+										<tr><td style="padding-left: 5px" class="td61">存储容量</td><td class="td62">100T</td></tr>
+										<tr><td style="padding-left: 5px" class="td71">服务容量</td><td class="td72">3000</td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="width:10%;height:550px;margin-top:7px;float:left;background: url(img/guzhang.png);">
+									 <div style="line-height:20px;padding-top:138px;padding-left:5px">告警信息</div>
+									  <img src="img/zuixiaohua.png" alt style="margin-top:260px;margin-left:30%" >
+									  <img src="img/zuidahua.png" alt="" >
+									  <img src="img/youjiao.png" alt="" >
+								   </div>
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false" style="width:90%;height:545px;top:5px;float:right;">
+							
+								<div style="height:550px;">
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									
+									<div class="widget-body" style="height:360px;">
+										
+										<table class="table table-bordered" style="height:350px;border-collapse: collapse;color: #333;">
+											<thead>
+												<tr>
+													<th>类型</th>
+													<th>对象</th>
+													<th>时间</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Row 111</td>
+													<td>Row 112</td>
+													<td>Row 13</td>
+													
+												</tr>
+
+											</tbody>
+										</table>
+
+									</div>
+									
+								</div>
+							
+
+							</div>
+					</div>
+					
+
+							
+					
+
+						
+					
+				</div>
+			<div data-options="region:'west',split:true" style="width:16%;height:400px">
+					<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div id="tree" class="data-tree">
+					<div class="tree-header" >
+						<img class="header-icon1" src="./network/image/header-icon.png" alt="icon" width="22" height="22"/><p style="margin-left:68px !important;">节点管理器</p>
+						<img class="header-icon2" src="./network/image/header-icon-1.png" alt="icon" width="22" height="22"/>
+					</div>
+						<!--
+					<div class="tree-header2 ztree-center">
+						<img class="header-icon3" id="img-1" src="./network/asset/ico/fy.png" alt="icon" width="16" height="19"/><p style="margin-left:68px;">主数据中心</p>
+						<img class="header-icon4" id="img-2" src="./network/image/arrow-2.png" alt="icon" width="16" height="16"/>
+					</div>
+					<div class="center-service" style="display: block;">
+						<div id="ztree1" class="ztree">
+						</div>
+					</div>
+					<div class="tree-header2 ztree-center"  >
+						<img class="header-icon3" src="./network/asset/ico/fy.png" alt="icon" width="16" height="19"/><p style="margin-left:68px;">数据中心2</p>
+						<img class="header-icon4" src="./network/image/arrow-2.png" alt="icon" width="16" height="16"/>
+					</div>
+                    <div class="center-service" >
+                        <div id="ztree2" class="ztree">
+                        </div>
+                    </div>
+					
+					-->
+				<!--end content-->
+		</div>
+				</div>
+				</div>
+				<div data-options="region:'center'" style="width:50% !important;">
+					<div class="easyui-layout" data-options="fit:true">
+						<div data-options="region:'north',split:true,border:false" style="height:554px;overflow:scroll;overflow:hidden;">
+							<div id="graphic" class="span8" style="width:100% !important;height:100%">
+					<canvas id="main" height="390px !important">
+					</canvas>
+					<div id="smear" style="z-index:10;"></div>
+					<div></div>
+				</div>
+						</div>
+						<div data-options="region:'west',split:true,border:false" style="width:35.5%;overflow:hidden;">
+						
+						
+							<!-- row -->
+							<div class="row" style="/*width:488px;height:200px;*/width:100%;height:auto;">
+                                  <div style="background:url(img/fangwen.png);background-size:cover;width:100%;margin-bottom:1px;height:49px;float:left;">
+									 <p style="color: #fff;font-size: 15px;left:6px;text-align:center;margin-top:11px;font-weight: bold;">总访问量</p>
+								   </div>
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                     
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false">
+									 
+
+										<div>
+
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+
+											</div>
+											<!-- end widget edit box -->
+
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+
+												<div id="site-stats" class="chart has-legend"></div>
+
+											</div>
+											<!-- end widget content -->
+
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->
+
+								</article>
+								<!-- WIDGET END -->
+
+							</div>
+
+							<!-- end row -->
+						</div>
+						<div data-options="region:'east',split:true,border:false" style="width:30%;overflow:hidden;">
+						
+						
+							<!-- row -->
+							<div class="row" style="/*width:408px;*/width:100%;">
+                            <div style="background:url(img/fangwen.png);background-size:cover;width:100%;margin-bottom:1px;height:49px;float:left;">
+									 <p style="color: #fff;font-size: 15px;left:6px;text-align:center;margin-top:11px;font-weight: bold;">数据容量</p>
+								   </div>
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-4 col-md-5 col-lg-5">
+
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget" id="wid-id-6" data-widget-editbutton="false" style="height:296px;">
+
+										<div style="height:262px">
+
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+
+											</div>
+											<!-- end widget edit box -->
+
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+
+												<div id="pie-chart" class="chart"></div>
+
+											</div>
+											<!-- end widget content -->
+
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->
+
+								</article>
+								<!-- WIDGET END -->
+
+							</div>
+
+							<!-- end row -->
+						</div>
+						<div data-options="region:'center',border:false" style="width:500px;overflow: hidden;">
+						
+						
+							<!-- row -->
+							<div class="row" style="/*width:433px;*/height:200px;width:100%;">
+                               <div style="background:url(img/fangwen.png);background-size:cover;width:100%;margin-bottom:1px;height:49px;float:left;">
+									 <p style="color: #fff;font-size: 15px;left:6px;text-align:center;margin-top:11px;font-weight: bold;">活跃节点</p>
+								   </div>
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" style="height:296px">
+
+										<div style="height:262px">
+
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+
+											</div>
+											<!-- end widget edit box -->
+
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+
+												<div id="bar-chart" class="chart"></div>
+
+											</div>
+											<!-- end widget content -->
+
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->
+
+
+								</article>
+								<!-- WIDGET END -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+		
+		
+
+	</div>
+    
+
+<!-- page scripts -->
+
+
+		<script type="text/javascript" src="easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+		<!-- BOOTSTRAP JS -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+
+
+		<!-- MAIN APP JS FILE -->
+		<script src="js/app.js"></script>
+
+		<!-- PAGE RELATED PLUGIN(S) -->
+
+		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+		<script src="js/plugin/flot/jquery.flot.cust.js"></script>
+		
+		
+		<script src="js/plugin/flot/jquery.flot.orderBar.js"></script>
+		<script src="js/plugin/flot/jquery.flot.pie.js"></script>
+		<script src="js/plugin/flot/jquery.flot.tooltip.js"></script>
+
+		<script type="text/javascript" src="network/asset/js/jquery.ztree-all-min.js"></script>
+		<script type="text/javascript" src="network/asset/CanvasXpress/js/canvasXpress.min.js"></script>
+		<script type="text/javascript" src="network/asset/js/lufylegend.min.js" ></script>
+		
+<script>
+window.onbeforeunload = function() {   
+            var n = window.event.screenX - window.screenLeft;   
+            var b = n > document.documentElement.scrollWidth-20;   
+            if(b && window.event.clientY < 0 || window.event.altKey){   
+                if(webSocket) {
+                	webSocket.close();
+                } 
+            }else{
+                if(webSocket) {
+                	webSocket.close();
+                } 
+            }
+        }
+		var nodes1=[], lines1=[], centerip=[];
+		var tmpznodes;
+	  	//ztree全局定义
+		/*var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+	  */
+		//ztree test data
+		var zNode=[];
+		
+		/*
+		var zNodes2 =[
+			{ id:11, pId:1, name:"数据访问节点5", stdno:"111", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:111, pId:11, name:"用户系统10", stdno:"1111", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:112, pId:11, name:"用户系统11", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:112, pId:11, name:"用户系统12", stdno:"1113", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:12, pId:1, name:"数据访问节点6", stdno:"121", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjdh.png"},
+			{ id:121, pId:12, name:"用户系统13", stdno:"1221", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:122, pId:12, name:"用户系统14", stdno:"1222", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:13, pId:1, name:"数据访问节点7", stdno:"131", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:131, pId:13, name:"用户系统15", stdno:"1331", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:132, pId:13, name:"用户系统16", stdno:"1332", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:133, pId:13, name:"用户系统17", stdno:"1333", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:14, pId:1, name:"数据访问节点8", stdno:"141", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:141, pId:14, name:"用户系统18", stdno:"1441", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:142, pId:14, name:"用户系统19", stdno:"1442", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:143, pId:14, name:"用户系统20", stdno:"1443", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+		];
+       var zNodes1 =[
+           { id:11, pId:1, name:"数据访问节点1", stdno:"111", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+          { id:111, pId:11, name:"用户系统1", stdno:"1111", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:112, pId:11, name:"用户系统2", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:12, pId:1, name:"数据访问节点2", stdno:"121", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+           { id:121, pId:12, name:"用户系统3", stdno:"1221", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:122, pId:12, name:"用户系统4", stdno:"1222", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+		   { id:13, pId:1, name:"数据访问节点3", stdno:"131", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+          { id:131, pId:13, name:"用户系统5", stdno:"1331", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:132, pId:13, name:"用户系统6", stdno:"1332", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+		   { id:133, pId:13, name:"用户系统7", stdno:"1333", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:14, pId:1, name:"数据访问节点4", stdno:"141", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+           { id:141, pId:14, name:"用户系统8", stdno:"1441", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:142, pId:14, name:"用户系统9", stdno:"1442", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"}
+        ];
+var zNodes3 =[
+			{ id:11, pId:1, name:"数据访问节点9", stdno:"111", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:111, pId:11, name:"用户系统21", stdno:"1111", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:112, pId:11, name:"用户系统22", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:113, pId:11, name:"用户系统23", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:12, pId:1, name:"数据访问节点10", stdno:"121", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjdh.png"},
+			{ id:121, pId:12, name:"用户系统24", stdno:"1221", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:122, pId:12, name:"用户系统25", stdno:"1222", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:13, pId:1, name:"数据访问节点11", stdno:"131", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:131, pId:13, name:"用户系统26", stdno:"1331", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:132, pId:13, name:"用户系统27", stdno:"1332", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:133, pId:13, name:"用户系统28", stdno:"1333", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"}
+		];
+		*/
+       $(document).ready(function(){
+	   //alert("sucbiuas");
+			$.ajax( {
+            type : "GET",
+            url : getRootPath() + "/api/v1/ztree/ztree/centernode",
+            cache : false,
+            async : false,
+            success : function(data) {
+			
+                console.log(data);
+			//alert("success");
+                addZtreeCenterNode(data);
+            },
+            error :function(data){
+			//alert("faild");
+                result= data;
+            }
+        });
+		var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+		/*
+          $.fn.zTree.init($("#ztree1"), setting, zNode[0]);
+           $.fn.zTree.init($("#ztree2"), setting, zNode[1]);
+		   */
+		   for (var i=1;i<zNode.length+1;i++){
+				var tree_id="#ztree"+i;
+				$.fn.zTree.init($(tree_id), setting, zNode[i-1]);
+		   }
+		   
+       });
+         function addZtreeCenterNode(data){
+	  // alert("success");
+			var json = eval('(' + data + ')'); 
+			var tmp =0;
+		//alert(json[0].id+"length"+json.length);
+		var accnum=0;
+		var sysnum=0;
+			var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+			for(var i=1;i<json.length+1;i++){
+				nodes1.push({
+					'id' : 'Level1-'+i,
+					'name' : json[i-1].name,
+					'group' : 1,
+					'shape' : 'image',
+					'width' : 100,
+					'height' : 100,
+					'imagePath' : 'data-center.png',
+					'x':600,
+					'y':500,
+					'size':10,
+					'address' : json[i-1].address,
+					'createtime' : json[i-1].createtime,
+					'ip' : json[i-1].id,
+					'upip' : json[i-1].upip
+				}
+				);
+			}
+		
+			for( var i=0;i<nodes1.length-1;i++)
+			{
+			//alert(nodes1[i].id);
+			for(var j=i+1;j<nodes1.length;j++)
+			{
+			lines1.push(
+			{
+				'id1' : nodes1[i].id,
+				'id2' : nodes1[j].id,
+				'color' : 'rgb(255,255,255)',
+				'type' : 'line'
+			});
+			}
+			}
+			for(var o in json){
+				console.log(json[o].name);
+				centerip.push(json[o].id);
+				
+				var center = '<div class="tree-header2 ztree-center" ><img class="header-icon3" id="img-1" src="./asset/ico/fy.png" alt="icon" width="16" height="19"/>'+'<p style="margin-left:68px;">'+json[o].name+'</p>'+'<img class="header-icon4" id="img-2" src="./image/arrow-2.png" alt="icon" width="16" height="16"/>'
+				document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML +center;
+				tmp=tmp+1;
+		
+				childztree = '<div class="center-service"><div id="ztree'+tmp+'" class="ztree"></div></div>'
+				document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML+childztree;
+				var treeId = '#ztree'+tmp;
+				
+				$.ajax( {
+            		type : "POST",
+            		url : getRootPath()+"/api/v1/ztree/childnodes?centerIp="+json[o].id,
+            		async : false,
+            		success : function(data) {
+						
+                		var zNodes = data;
+						zNode.push(zNodes);
+					//	zNode1=data;
+						//var tmp=0;
+						//var nkl=eval('(' + data + ')');
+						//alert("m cds");
+						if(zNodes.length>0){
+						//alert(zNodes[0].stdname);
+						var tmp11 = 0;
+						for(var i=0;i<zNodes.length;)
+						{
+						if(zNodes[i].stdname=="访问节点")
+						{
+							accnum++;
+							nodes1.push({
+								'id' : 'Level2-'+accnum,
+							  'name' : zNodes[i].name,
+							  'group' : 2,
+							  'shape' : 'image',
+							  'width':100,
+							  'height':100,
+							  'imagePath':'data-node.png',
+							  'x':600,
+							  'y':500,
+							  'size':10,
+							  'address':zNodes[i].address,
+							  'createtime':zNodes[i].createtime,
+							  'ip':zNodes[i].id,
+							  'upip':zNodes[i].upip
+							});
+							lines1.push({
+							'id1' : nodes1[o].id,
+							'id2' : 'Level2-'+accnum,
+							'color' : 'rgb(255,255,255)',
+							'type' : 'line'
+							});
+							for(var j=i+1;j<zNodes.length;j++){
+								if(zNodes[j].stdname!="访问节点"){
+								sysnum++;
+								nodes1.push({
+								'id' : 'Level3-'+sysnum,
+							  'name' : zNodes[j].name,
+							  'group' : 3,
+							  'shape' : 'image',
+							  'width':100,
+							  'height':100,
+							  'imagePath':'sys.png',
+							  'x':600,
+							  'y':500,
+							  'size':10,
+							  'address':zNodes[j].address,
+							  'createtime':zNodes[j].createtime,
+							  'ip':zNodes[j].id,
+							  'upip':zNodes[j].upip
+								});
+								lines1.push({
+								'id1' : 'Level2-'+accnum,
+								'id2' : 'Level3-'+sysnum,
+								'color' : 'rgb(255,255,255)',
+								'type' : 'line'
+								});
+								}
+								else
+								break;
+							}
+						i=j;
+						}
+						}
+						
+						}
+						
+						/*
+                		$.fn.zTree.init($(treeId), setting, zNodes);
+                 	*/},
+            		error :function(data){
+                		result= data;
+            		}
+            	});
+				    
+			}
+			console.log("***********");
+			console.log(nodes1);
+			console.log("***********");
+			
+			$('.ztree-center').click(function(){
+			console.log("click ztree center");
+			var text=$(this).text();
+
+			for(var i=0;i<nodes1.length;i++){
+				if(text.indexOf(nodes1[i].name)>-1)
+				{
+					changeGrgh(nodes1[i]);
+					break;
+				}
+			}
+            $(this).next().toggle();
+        });
+
+	var graphic = document.getElementById('graphic');
+	var maincanvas = document.getElementById('main');
+	maincanvas.width = graphic.scrollWidth;
+	var cx2 = new CanvasXpress('main',
+		{
+		'nodes' : nodes1,
+		'edges' : lines1,
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700,
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false
+		  },
+		 {
+		'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			if(dataTmp.group==1)
+				window.parent.addPanel();
+				
+			},
+		'click' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			document.getElementById("data-network").style.display = 'block';
+			if(dataTmp.group<3){
+				document.getElementById("network-name").innerHTML = "基本信息";
+				changeGrgh(dataTmp);
+				}
+			}
+		}
+	);
+			$('.tree-header3').click(function(){
+            	showTree();
+       	    });
+		}
+       
+
+		
+		var showTree = function(){
+			var treeHeader = event.target;
+			var treeContent = event.target.nextElementSibling;
+			if(treeContent.style.display != ''){
+				treeContent.style.display = '';
+				treeHeader.style.background = "#263948";
+			}else{
+				treeContent.style.display = 'block';
+				treeHeader.style.background = "#24313e";
+			}
+		}
+		function zTreeOnClick(event, treeId, treeNode) {
+			console.log("zTreeOnClick");
+			document.getElementById("data-network").style.display = 'block';
+			document.getElementById("network-name").innerHTML = "基本属性";
+			var name=treeNode.name;
+			for(var i=0;i<nodes1.length;i++){
+				if(name==nodes1[i].name){
+					changeGrgh(nodes1[i]);
+					break;
+				}
+			}
+		}
+        /*
+		var setting = {
+	callback: {
+		onClick: zTreeOnClick
+	}
+	
+	var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+*/
+        function Smearing($object){
+            var self = this;
+            base(self,LSprite,[]);
+
+            self.x = 687.5000000000001;
+            self.y = 406.11164463386166;
+
+            self.mode = "";
+
+            self.smearingSprite = new LSprite();
+            self.addChild(self.smearingSprite);
+
+            self.object = $object;
+
+            self.originalSprite = new LSprite();
+            self.addChild(self.originalSprite);
+            self.originalSprite.addChild(self.object);
+
+            self.addEventListener(LEvent.ENTER_FRAME,self.smeared);
+        }
+        Smearing.prototype.smeared = function(self){
+            var smearingChild = new SmearingChild(self.originalSprite,self.object);
+            self.smearingSprite.addChild(smearingChild);
+
+            for(var key in self.smearingSprite.childList){
+                LTweenLite.to(self.smearingSprite.childList[key],0.5,{
+                    alpha: 0,
+                    onComplete:function(o){
+                        self.smearingSprite.removeChild(o);
+                    }
+                });
+            }
+        };
+        Smearing.prototype.to = function($duration,$vars){
+            var self = this;
+
+            $vars.onComplete = function(){
+                self.mode = "complete";
+            }
+            LTweenLite.to(self.originalSprite,$duration,$vars);
+        };
+
+        /**
+         * SmearingChild
+         * @param $parent 确定拖尾位置的对象
+         * @param $object 要添加拖尾效果的对象
+         */
+        function SmearingChild($parent,$object){
+            var self = this;
+            base(self,LSprite,[]);
+
+            self.addChild($object);
+
+            self.x = $parent.x;
+            self.y = $parent.y;
+            self.alpha = 0.6;
+        }
+ /**      $(document).ready(function(){
+                    setTimeout(function(){
+                        init(10,'smear',maincanvas.width,maincanvas.height,main);
+                        var backLayer,meteorLayer;
+                        var back,meteor;
+                        var maxFrame = 40,indexFrame = 0;
+
+                        function main(){
+                            //LStage.setDebug(true);
+                            //加入底板层
+                            backLayer = new LSprite();
+                            addChild(backLayer);
+                            //加入流星层
+                            meteorLayer = new LSprite();
+                            addChild(meteorLayer);
+
+                            var childSmear = $('#smear').children()[0];
+                            console.log(childSmear);
+                            childSmear.style.zIndex = -1;
+
+                            for(i = 0;i<cx2.data.nodes.length;i++){
+                                var executeLoop = function(){
+                                    var dataTmp = cx2.data.nodes[i];
+                                    var spotX = (cx2.offsetX + cx2.data.nodes[i].x) * cx2.scaleFactor;
+                                    var spotY = (cx2.offsetY + cx2.data.nodes[i].y) * cx2.scaleFactor;
+                                    var meteorSpot = new LSprite();
+                                    meteorSpot.graphics.drawArc(0,"#FFFFFF",[spotX,spotY,10,0,2*Math.PI],true,"rgb(189, 35, 35)");
+                                    meteorSpot.alpha = 0;
+                                    meteorLayer.addChild(meteorSpot);
+                                    meteorSpot.addEventListener(LMouseEvent.MOUSE_DOWN,function(){
+                                                document.getElementById("sidebar-statu").style.display = 'block';
+
+                                                if(dataTmp.color=="rgb(127,127,127)"){
+                                                    document.getElementById("sidebar-statu").style.display = 'none';
+                                                }
+                                                else{
+                                                    document.getElementById("sidebar-statu").style.display = 'block';
+
+                                                    if(dataTmp.group==1&&dataTmp.id=="Level1-1"){  //主数据中心具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.10</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>主</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>北京大兴</td></tr><tr><td><span class="label">4</span></td><td>中心容量</td><td>100</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>300</td></tr></table> </div>'; }
+                                                    else if(dataTmp.group==1&&dataTmp.id!="Level1-1"){  //从数据中心具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.10</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>从</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>北京市大兴区金苑路24号</td></tr><tr><td><span class="label">4</span></td><td>中心容量</td><td>100</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>300</td></tr></table> </div>';}
+                                                    else if(dataTmp.group==2){ 	//数据访问节点具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.2</td></tr><tr><td><span class="label">2</span></td><td>访问类型</td><td>情报信息库</td></tr><tr><td><span class="label">3</span></td><td>用户系统IP</td><td>192.168.124.330</td></tr></table> </div>'; }
+                                                    else { 	//用户系统具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'<a id="closeButton" class="mo-close" title="关闭"></a>&nbsp;&nbsp;&nbsp;&nbsp</div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.2</td></tr><tr><td><span class="label">2</span></td><td>所属机构</td><td>机构1</td></tr><tr><td><span class="label">3</span></td><td>系统类型</td><td>类型1</td></tr><tr><td><span class="label">4</span></td><td>接口1</td><td>正常显示</td></tr><tr><td><span class="label">5</span></td><td>接口2</td><td>等待返回</td></tr><tr><td><span class="label">6</span></td><td>接口3</td><td>等待返回</td></tr><tr><td><span class="label">7</span></td><td>接口4</td><td>正常显示</td></tr></table> </div>';}
+
+                                                    var msgBox = document.getElementById('sidebar-statu');
+                                                    var closeBtn = document.getElementById('closeButton');
+                                                    closeBtn.onclick=function(){
+                                                        msgBox.style.display = 'none';}
+                                                }
+                                            }
+                                    );
+                                }
+                                executeLoop();
+                            };
+
+                            var test = document.getElementById('test');
+
+                            test.onclick = function(){
+                                var childSmear = $('#smear').children()[0];
+                                console.log(childSmear);
+                                childSmear.style.zIndex = -1;
+                                var zuobiaox = (cx2.offsetX + cx2.data.nodes[0].x) * cx2.scaleFactor;
+                                var zuobiaoy = (cx2.offsetY + cx2.data.nodes[0].y) * cx2.scaleFactor;
+                                var zuobiaox1 = (cx2.offsetX + cx2.data.nodes[1].x) * cx2.scaleFactor;
+                                var zuobiaoy1 = (cx2.offsetY + cx2.data.nodes[1].y) * cx2.scaleFactor;
+                                console.log(cx2.scaleFactor);
+                                console.log(zuobiaox);
+                                console.log(zuobiaoy);
+                                console.log(zuobiaox1);
+                                console.log(zuobiaoy1);
+                                //画一个黄色矩形作为一颗流星
+                                meteor = new LSprite();
+                                meteor.graphics.drawArc(0,"#ff0000",[zuobiaox,zuobiaoy,2,0,2*Math.PI],true,"#000000");
+                                meteor1 = new LSprite();
+                                meteor1.graphics.drawArc(3,"#FFFFFF",[zuobiaox,zuobiaoy,4,0,2*Math.PI],true,"#0066FF");
+
+                                meteorLayer.addChild(meteor1);
+
+                                LTweenLite.to(meteor1,1.5,{
+                                    x: zuobiaox1-zuobiaox,
+                                    y: zuobiaoy1-zuobiaoy,
+                                    onComplete:function(o){
+                                        meteorLayer.removeChild(o);
+                                    }
+                                });
+                                meteorLayer.addEventListener(LEvent.ENTER_FRAME,onframe);
+
+                                var count = 1;
+                                function onframe(){
+                                    if(count<50){
+                                        var meteor2 = new LSprite();
+
+                                        meteor2.graphics.drawArc(4,"#0066FF",[zuobiaox,zuobiaoy,2-2*count/50,0,2*Math.PI],true,"#FFFFFF");
+                                        meteor2.alpha = 1-0.95*count/50;
+                                        meteorLayer.addChild(meteor2);
+                                        LTweenLite.to(meteor2,1.5,{
+                                            alpha:1-0.95*count/50,
+                                            x: zuobiaox1-zuobiaox,
+                                            y: zuobiaoy1-zuobiaoy,
+                                            onComplete:function(o){
+                                                console.log("动画完成！")
+                                                meteorLayer.removeChild(o);
+                                            }
+                                        });
+                                        count ++
+                                    }
+
+                                }
+                            }
+                        }
+
+                    },0);
+                }
+        );*/
+
+		
+    var graphic = document.getElementById('graphic');
+	var maincanvas = document.getElementById('main');
+	maincanvas.width = graphic.scrollWidth;
+	var cx2 = new CanvasXpress('main',
+{
+		'nodes' : nodes1,
+		'edges' : lines1,
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700, 
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false},
+		 {
+'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			if(dataTmp.group==1)
+				window.parent.addPanel();
+				
+			},
+	  'click' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			document.getElementById("data-network").style.display = 'block';
+			if(dataTmp.group<3){
+			document.getElementById("network-name").innerHTML = "基本信息";
+			changeGrgh(dataTmp);
+			}
+	  }
+ }
+	);
+	
+	
+	function changeGrgh( selectedNode){
+	console.log(selectedNode.name);
+	console.log(selectedNode.address);
+	console.log(selectedNode.ip);
+	$(".td11").text("名称");
+	$(".td12").text(selectedNode.name);
+			$(".td21").text("地址");
+			$(".td22").text(selectedNode.address);
+			$(".td31").text("IP：");
+			$(".td32").text(selectedNode.ip);
+			$(".td41").text("建立时间");
+			$(".td42").text(selectedNode.createtime);
+			$(".td51").text("主中心节点");
+			$(".td52").text("否");
+			$(".td61").text("当前状态");
+			$(".td62").text("正常显示");
+			
+			
+	//delete cx2;
+	$('#container-main').children().remove();
+	$('#container-main').remove();
+	$('#main').children().remove();
+	$('#main').remove();
+			var main='<canvas id="main" height="540px !important"  ></canvas>';
+			$('#smear').before(main);
+			document.getElementById('main').width=graphic.scrollWidth;
+	
+			
+			//var maincanvas1 = document.getElementById('main1');
+	
+	var Midnode=selectedNode;
+	var Cnodes=[];
+	var Clines=[];
+	Cnodes.push(Midnode);
+	//alert(Cnodes[2].name);
+	if(Midnode.group == 1){
+		
+		var tmpnodes = [];
+		for(var i=0;i<nodes1.length;i++)
+		{
+			if(nodes1[i].upip == Midnode.ip){
+				Cnodes.push(nodes1[i]);
+				tmpnodes.push(nodes1[i]);
+			}
+		}
+		console.log(Midnode);
+		console.log(tmpnodes);
+		for(var j=0;j<tmpnodes.length;j++){
+			for( var k=0;k<nodes1.length;k++){
+				if(nodes1[k].upip==tmpnodes[j].ip)
+					Cnodes.push(nodes1[k]);
+			}
+		}
+		
+		for(var i=0;i<lines1.length;i++)
+		{
+			if(lines1[i].id1.charAt(5)=='1'&&lines1[i].id2.charAt(5)=='2'){
+				if(lines1[i].id1==Midnode.id){
+					Clines.push(lines1[i]);
+					}
+			}
+			if(lines1[i].id1.charAt(5)=='2'&&lines1[i].id2.charAt(5)=='3'){
+				for(var j=0;j<Cnodes.length;j++){
+					if((Cnodes[j].id.charAt(5)=='2')&&(Cnodes[j].id==lines1[i].id1)){
+					Clines.push(lines1[i]);
+					}
+				}
+			}
+		
+			/*
+			if(lines1[i].id1==Midnode.id){
+				if(lines1[i].id1.charAt(5)=='1'&&lines1[i].id2.charAt(5)=='2'){
+					Clines.push(lines1[i]);
+					var tmp = lines1[i].id2;
+					for(var j=0;j<lines1.length;j++){
+						if(lines1.id1==tmp){
+							if(lines1[j].id1.charAt(5)=='2'&&lines1[j].id2.charAt(5)=='3')
+								Clines.push(lines1[j]);
+						}
+					
+					}
+				}			
+			}
+			*/
+		}
+		
+		/*
+		for(var i=0;i<lines1.length;i++){
+			if((lines1[i].id1==Midnode.id)){
+				if((lines1[i].id1.charAt(5)=='1'&&lines1[i].id2.charAt(5)=='2')||(lines1[i].id1.charAt(5)=='2'&&lines1[i].id2.charAt(5)=='3'))
+					Clines.push(lines1[i]);	
+			}		
+		}
+		*/
+		
+	}else if(Midnode.group == 2){
+		for(var i=0;i<nodes1.length;i++)
+		{
+			if(nodes1[i].upip == Midnode.ip){
+				Cnodes.push(nodes1[i]);
+			}
+		}
+		for(var i=0;i<lines1.length;i++)
+		{
+			if(lines1[i].id1==Midnode.id){
+				if(lines1[i].id1.charAt(5)=='2'&&lines1[i].id2.charAt(5)=='3')
+					Clines.push(lines1[i])		
+			}	
+		}
+		
+	
+	}
+	
+	console.log(Cnodes);
+	console.log(Clines);
+	console.log(lines1);
+	//delete cx2;
+	
+	 	var  cx1 = new CanvasXpress('main',
+	{
+		'nodes' :Cnodes,
+		
+		'edges' : Clines, 
+		
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700,
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false},
+		 {
+
+	  'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			//document.getElementById("data-network").style.display = 'block';
+			//document.getElementById("network-name").innerHTML = "bvjdviu";
+			 
+			
+	  },
+	 
+ 
+  'click' : function(o, e, t) {
+	  
+			//		var dataTmp = o.nodes[0];
+			//document.getElementById("data-network").style.display = 'block';
+			//document.getElementById("network-name").innerHTML = "bvjdviu";
+			
+					}
+					}
+	);
+	
+	}
+	
+	
+
+		</script>
+		
+			<script type="text/javascript">
+	$(document).ready(function(){
+	$('.tree-header').click(function()
+	{
+	console.log("tree header click");
+	$('#container-main').children().remove();
+	$('#container-main').remove();
+	$('#main').children().remove();
+	$('#main').remove();
+			var main='<canvas id="main" height="390px !important"  ></canvas>';
+			$('#smear').before(main);
+			document.getElementById('main').width=graphic.scrollWidth;
+			var cx2 = new CanvasXpress('main',
+{
+		'nodes' : nodes1,
+		'edges' : lines1,
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700,
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false},
+		 {
+
+		'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			if(dataTmp.group==1)
+				window.parent.addPanel();
+				
+			},
+	  'click' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			document.getElementById("data-network").style.display = 'block';
+			if(dataTmp.group<3){
+			document.getElementById("network-name").innerHTML = "基本信息";
+			changeGrgh(dataTmp);
+			}
+	  }
+ }
+	);
+	//location.reload() ;
+	});
+	});
+    </script>
+		<script type="text/javascript">
+			// PAGE RELATED SCRIPTS
+
+			/* chart colors default */
+			var $chrt_border_color = "#efefef";
+			var $chrt_grid_color = "#DDD"
+			var $chrt_main = "#E24913";
+			/* red       */
+			var $chrt_second = "#6595b4";
+			/* blue      */
+			var $chrt_third = "#FF9F01";
+			/* orange    */
+			var $chrt_fourth = "#7e9d3a";
+			/* green     */
+			var $chrt_fifth = "#BD362F";
+			/* dark red  */
+			var $chrt_mono = "#000";
+
+			$(document).ready(function() {
+
+				// DO NOT REMOVE : GLOBAL FUNCTIONS!
+				pageSetUp();
+
+				
+
+				/* bar chart */
+
+				if ($("#bar-chart").length) {
+				
+					$.ajax( {
+			            type : "GET",
+			            url : getRootPath() + "/api/v1/ztree/ztree/barchart",
+			            cache : false,
+			            async : false,
+			            success : function(data) {
+							
+							var json = eval('(' + data + ')'); 
+							var tmp = new Array();
+							var length=json[0];
+							tmp = json[length+1].split("/");
+							var t=[];
+							for(var i=0;i<length;i++){
+								var temp=new Array();
+								temp=json[length+2+i].split("/");
+								var num=[];
+								for(var j=0;j<tmp.length;j++){
+									num.push([parseInt(tmp[j]),parseInt(temp[j])]);
+								}	
+								
+								var bar={};
+								bar.show=true;
+								bar.barWidth=0.5;
+								bar.order=i;
+								
+								var obj={};
+								obj.data=num;
+								obj.bars=bar;
+								t.push(obj);
+							}
+					//Display graph
+					$.plot($("#bar-chart"), t, {
+						colors : [$chrt_second, $chrt_fourth, "#666", "#BBB"],
+						grid : {
+							show : true,
+							hoverable : true,
+							clickable : true,
+							tickColor : $chrt_border_color,
+							borderWidth : 0,
+							borderColor : $chrt_border_color,
+						},
+						legend : true,
+						tooltip : true,
+						tooltipOpts : {
+							content : "<b>%x</b> = <span>%y</span>",
+							defaultTheme : false
+						}
+
+					});
+                      },
+			            error :function(data){
+							console.log("failed");
+							console.log(data);
+			            }
+			        });
+					
+					
+				}
+
+				/* end bar chart */
+
+				/* pie chart */
+
+				if ($('#pie-chart').length) {
+
+					$.ajax( {
+						type : "GET",
+						url : getRootPath() + "/api/v1/ztree/ztree/piechart",
+						cache : false,
+						async : false,
+						success : function(data) {
+							var json = eval('(' + data + ')'); 
+							
+							var tmp1 = new Array();
+							var tmp2 = new Array();
+							tmp1 = json[0].split("/");
+							tmp2 = json[1].split("/");
+							var data_pie = [];
+							for(var i = 0; i < tmp1.length; i++){
+								data_pie[i] = {
+									label : tmp1[i],
+									data : tmp2[i]
+								}
+							}
+
+					$.plot($("#pie-chart"), data_pie, {
+						series : {
+							pie : {
+								show : true,
+								innerRadius : 0.5,
+								radius : 1,
+								label : {
+									show : false,
+									radius : 2 / 3,
+									formatter : function(label, series) {
+										return '<div style="font-size:11px;text-align:center;padding:4px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+									},
+									threshold : 0.1
+								}
+							}
+						},
+						legend : {
+							show : true,
+							noColumns : 1, // number of colums in legend table
+							labelFormatter : null, // fn: string -> string
+							labelBoxBorderColor : "#000", // border color for the little label boxes
+							container : null, // container (as jQuery object) to put legend in, null means default on top of graph
+							position : "ne", // position of default legend container within plot
+							margin : [5, 10], // distance from grid edge to default legend container within plot
+							backgroundColor : "#efefef", // null means auto-detect
+							backgroundOpacity : 1 // set to 0 to avoid background
+						},
+						grid : {
+							hoverable : true,
+							clickable : true
+						},
+					});
+                    },
+						error :function(data){
+						
+						}
+					});
+				}
+
+				/* end pie chart */
+
+				/* site stats chart */
+
+				if ($("#site-stats").length) {
+                   console.log("site stats begin");
+					$.ajax( {
+						type : "GET",
+						url : getRootPath() + "/api/v1/ztree/ztree/statechart",
+						cache : false,
+						async : false,
+						success : function(data) {
+						
+							var json = eval('(' + data + ')'); 
+							
+							var tmp = new Array();
+							var length=json[0];
+							tmp = json[length+1].split("/");
+							var t=[];
+							for(var i=0;i<length;i++){
+								var temp=new Array();
+								temp=json[length+2+i].split("/");
+								var num=[];
+								for(var j=0;j<tmp.length;j++){
+									num.push([parseInt(tmp[j]),parseInt(temp[j])]);
+								}								
+								var obj={};
+								obj.data=num;
+								obj.label=json[i+1];
+								t.push(obj);
+							}
+
+					var plot = $.plot($("#site-stats"), t, {
+						series : {
+							lines : {
+								show : true,
+								lineWidth : 1,
+								fill : true,
+								fillColor : {
+									colors : [{
+										opacity : 0.1
+									}, {
+										opacity : 0.15
+									}]
+								}
+							},
+							points : {
+								show : true
+							},
+							shadowSize : 0
+						},
+						xaxis : {
+							mode : "time",
+							tickLength : 10
+						},
+
+						yaxes : [{
+							min : 20,
+							tickLength : 5
+						}],
+						grid : {
+							hoverable : true,
+							clickable : true,
+							tickColor : $chrt_border_color,
+							borderWidth : 0,
+							borderColor : $chrt_border_color,
+						},
+						tooltip : true,
+						tooltipOpts : {
+							content : "%s for <b>%x:00 hrs</b> was %y",
+							dateFormat : "%y-%0m-%0d",
+							defaultTheme : false
+						},
+						colors : [$chrt_main, $chrt_second],
+						xaxis : {
+							ticks : 15,
+							tickDecimals : 2
+						},
+						yaxis : {
+							ticks : 15,
+							tickDecimals : 0
+						},
+					});
+                    },
+						error :function(data){
+						
+						}
+					});
+				
+				}
+
+				/* end site stats */
+
+
+			});
+
+			/* end flot charts */
+
+		</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph>
+<nodes>
+
+	<maincenter>
+		<group>2</group>
+		<shape>image</shape>
+		<width>100</width>
+		<height>100</height>
+		<imagePath>data-center1.png</imagePath>
+		<x>600</x>
+		<y>500</y>
+		<mainCenterSize>13</mainCenterSize>
+		<size>10</size>
+	</maincenter>
+
+	<centernode>
+		<group>2</group>
+		<shape>image</shape>
+		<width>100</width>
+		<height>100</height>
+		<imagePath>data-center.png</imagePath>
+		<x>600</x>
+		<y>500</y>
+		<mainCenterSize>13</mainCenterSize>
+		<size>10</size>
+	</centernode>
+	<accessnode>
+		<group>1</group>
+		<shape>image</shape>
+		<width>100</width>
+		<height>100</height>
+		<imagePath>data-node.png</imagePath>
+		<x>600</x>
+		<y>500</y>
+		<size>6</size>
+	</accessnode>
+	<sysnode>
+		<group>0</group>
+		<shape>image</shape>
+		<width>100</width>
+		<height>100</height>
+		<imagePath>sys.png</imagePath>
+		<x>600</x>
+		<y>500</y>
+		<size>6</size>
+	</sysnode>
+</nodes>
+	<edge>
+		<color>rgb(255,255,255)</color>
+		<line_type>line</line_type>
+		<dashed_type>dashed</dashed_type>
+	</edge>
+	<legend>
+		<x>-700</x>
+		<y>-500</y>
+	</legend>
+</Graph>

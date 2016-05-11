@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>分布式实时监控中心</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		
+		<!--easyui-->
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	
+	
+	<!-- network -->
+		<script src="network/asset/js/esl/esl.js"></script>
+		<script src="network/asset/js/codemirror.js"></script>
+		<script src="network/asset/js/javascript.js"></script>
+<script src="network/asset/js/ScriptEngine.js"></script>
+		<link href="network/asset/css/bootstrap.css" rel="stylesheet">
+		<link href="network/asset/css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="network/asset/css/codemirror.css" rel="stylesheet">
+		<link href="network/asset/css/monokai.css" rel="stylesheet">
+		<link href="network/asset/css/echartsHome.css" rel="stylesheet">
+		<link href="network/asset/css/zTreeStyle.css" rel="stylesheet">
+        <link rel="stylesheet" href="network/css/network.css">
+		<!-- jieshu-->
+	
+   
+	
+	
+    <!-- start: CSS -->
+   
+   
+    <link href="assets/css/retina.min.css" rel="stylesheet">
+    
+    <!-- end: CSS -->
+
+    <!--index CSS -->
+    
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/color.css" />
+   
+
+    <link rel="stylesheet" href="assets/styles/all.css"/>
+	<!--
+    <link href="assets/default.css" type="text/css" rel="stylesheet" />
+   -->
+
+
+
+	<!-- gyy add start-->
+	<!-- Basic Styles -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+	<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.css">
+	
+
+	
+	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+	
+
+	<!-- FAVICONS -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+	<!-- GOOGLE FONT -->
+	
+
+	<!-- gyy add end -->
+
+	<style type="text/css">
+		.widget-body #site-stats .legend {position: absolute;top: 0px;left: 185px;}
+		body{overflow:auto}
+	</style>
+
+
+</head>
+<body style="min-width: 1200px; height:100%;background-color:transparent;min-height:519px;">
+
+		
+
+
+	<!--tab begin-->
+<!--
+	<div id="tt" class="easyui-tabs" style="width:100%;height:600px;opacity:1;" >
+	
+		<div title="物理视图" data-options="closable:true" style="padding:10px">
+	-->		
+			<div class="easyui-layout" style="width:100%;height:100%;opacity:1;">
+				<div data-options="region:'east',split:true"  style="width:20%;height:400px;">
+
+					 <div class="data-tree-2" id="data-network" >
+					
+							<div class="center-service" style="padding-left:0;height:292px; width:248px;border-radius:0 0 5px 5px;display: block;">
+							 <div style="width:10%;height:292px;float:left;margin-bottom:4px;background: url(img/shuxing.png);">
+									  <div style="line-height:20px;padding-top:48px;padding-left:5px" id="network-name">属性信息</div>
+									   <img src="img/youjiao.png" alt style="margin-top:137px" >
+									  <img>
+								   </div>
+								<table class="table-info" style="border-spacing:0;width:90%;max-width:100%;float:right;background-color: transparent;border-collapse: collapse;">
+								<!--
+									<thead class="tree-header2">
+										<tr><td style="padding-left: 15px">#</td><td style="padding-left: 5px">目标</td><td>目标值</td></tr>
+									</thead>
+								-->
+									<tbody>
+									   <tr><td style="padding-left: 5px" class="td11">属性</td><td class="td12">属性值</td></tr>
+										<tr><td style="padding-left: 5px" class="td21">中心数量</td><td class="td22">1</td></tr>
+										<tr><td style="padding-left: 5px" class="td31">当前中心</td><td class="td32">192.168.3.1</td></tr>
+										<tr><td style="padding-left: 5px" class="td41">主从中心</td><td class="td42">从中心</td></tr>
+										<tr><td style="padding-left: 5px" class="td51">地理位置</td><td class="td52">北京市大兴区金苑路</td></tr>
+										<tr><td style="padding-left: 5px" class="td61">存储容量</td><td class="td62">100T</td></tr>
+										<tr><td style="padding-left: 5px" class="td71">服务容量</td><td class="td72">3000</td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div style="width:10%;height:455px;margin-top:7px;float:left;background: url(img/guzhang.png);">
+									 <div style="line-height:20px;padding-top:48px;padding-left:5px">告警信息</div>
+									  <img src="img/zuixiaohua.png" alt style="margin-top:260px;margin-left:30%" >
+									  <img src="img/zuidahua.png" alt="" >
+									  <img src="img/youjiao.png" alt="" >
+								   </div>
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false" style="width:90%;height:440px;top:5px;float:right;">
+							
+								<div style="height:455px;">
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									
+									<div class="widget-body" style="height:360px;">
+										
+										<table class="table table-bordered" style="height:350px;border-collapse: collapse;color: #333;">
+											<thead>
+												<tr>
+													<th>类型</th>
+													<th>对象</th>
+													<th>时间</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+												<tr>
+													<td>Row 1</td>
+													<td>Row 2</td>
+													<td>Row 3</td>
+													
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+									
+								</div>
+							
+
+							</div>
+					</div>
+					
+
+							
+					
+
+						
+					
+				</div>
+			<div data-options="region:'west',split:true" style="width:18%;height:400px">
+					<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div id="tree" class="data-tree">
+					<div class="tree-header" >
+						<img class="header-icon1" src="./network/image/header-icon.png" alt="icon" width="22" height="22"/>节点管理器
+						<img class="header-icon2" src="./network/image/header-icon-1.png" alt="icon" width="22" height="22"/>
+					</div>
+					
+					<!--
+					<div class="tree-header2 ztree-center">
+						<img class="header-icon3" id="img-1" src="./network/asset/ico/fy.png" alt="icon" width="16" height="19"/>主数据中心
+						<img class="header-icon4" id="img-2" src="./network/image/arrow-2.png" alt="icon" width="16" height="16"/>
+					</div>
+					<div class="center-service" style="display: block;">
+						<div id="ztree1" class="ztree">
+						</div>
+					</div>
+					<div class="tree-header2 ztree-center"  >
+						<img class="header-icon3" src="./network/asset/ico/fy.png" alt="icon" width="16" height="19"/>数据中心2
+						<img class="header-icon4" src="./network/image/arrow-2.png" alt="icon" width="16" height="16"/>
+					</div>
+                    <div class="center-service" >
+                        <div id="ztree2" class="ztree">
+                        </div>
+                    </div>
+					<div class="tree-header2 ztree-center" >
+						<img class="header-icon3" src="./network/asset/ico/fy.png" alt="icon" width="16" height="19"/>数据中心3
+						<img class="header-icon4" src="./network/image/arrow-2.png" alt="icon" width="16" height="16"/>
+					</div>
+                    <div class="center-service">
+                        <div id="ztree3" class="ztree">
+                        </div>
+                    </div>
+					-->
+					
+		</div>
+				</div>
+				</div>
+				<div data-options="region:'center'" style="width:50% !important;">
+					<div class="easyui-layout" data-options="fit:true">
+						<div data-options="region:'north',split:true,border:false" style="height:544px;">
+							<div id="graphic" class="span8" style="width:100% !important;height:100%">
+					<canvas id="main" height="390px !important">
+					</canvas>
+					<div id="smear" style="z-index:10;"></div>
+					<div></div>
+				</div>
+						</div>
+						<div data-options="region:'west',split:true,border:false" style="width:35.5%;overflow:hidden;">
+						
+						
+							<!-- row -->
+							<div class="row" style="/*width:488px;height:200px;*/width:100%;height:auto;">
+                                  <div style="background:url(img/fangwen.png);background-size:cover;width:100%;margin-bottom:1px;height:49px;float:left;">
+									 <p style="color: #fff;font-size: 15px;left:6px;text-align:center;margin-top:11px;font-weight: bold;">总访问量</p>
+								   </div>
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                     
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false">
+									 
+										<!-- widget options:
+										usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+										data-widget-colorbutton="false"
+										data-widget-editbutton="false"
+										data-widget-togglebutton="false"
+										data-widget-deletebutton="false"
+										data-widget-fullscreenbutton="false"
+										data-widget-custombutton="false"
+										data-widget-collapsed="true"
+										data-widget-sortable="false"
+
+										-->
+										 
+										
+
+										<!-- widget div-->
+										<div>
+
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+
+											</div>
+											<!-- end widget edit box -->
+
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+
+												<div id="site-stats" class="chart has-legend"></div>
+
+											</div>
+											<!-- end widget content -->
+
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->
+
+								</article>
+								<!-- WIDGET END -->
+
+							</div>
+
+							<!-- end row -->
+						</div>
+						<div data-options="region:'east',split:true,border:false" style="width:30%;overflow:hidden;">
+						
+						
+							<!-- row -->
+							<div class="row" style="/*width:408px;*/width:100%;">
+                            <div style="background:url(img/fangwen.png);background-size:cover;width:100%;margin-bottom:1px;height:49px;float:left;">
+									 <p style="color: #fff;font-size: 15px;left:6px;text-align:center;margin-top:11px;font-weight: bold;">数据容量</p>
+								   </div>
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-4 col-md-5 col-lg-5">
+
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget" id="wid-id-6" data-widget-editbutton="false" style="height:296px;">
+										<!-- widget options:
+										usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+										data-widget-colorbutton="false"
+										data-widget-editbutton="false"
+										data-widget-togglebutton="false"
+										data-widget-deletebutton="false"
+										data-widget-fullscreenbutton="false"
+										data-widget-custombutton="false"
+										data-widget-collapsed="true"
+										data-widget-sortable="false"
+
+										-->
+										
+
+										<!-- widget div-->
+										<div style="height:262px">
+
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+
+											</div>
+											<!-- end widget edit box -->
+
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+
+												<div id="pie-chart" class="chart"></div>
+
+											</div>
+											<!-- end widget content -->
+
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->
+
+								</article>
+								<!-- WIDGET END -->
+
+							</div>
+
+							<!-- end row -->
+						</div>
+						<div data-options="region:'center',border:false" style="width:500px;overflow: hidden;">
+						
+						
+							<!-- row -->
+							<div class="row" style="/*width:433px;*/height:200px;width:100%;">
+                               <div style="background:url(img/fangwen.png);background-size:cover;width:100%;margin-bottom:1px;height:49px;float:left;">
+									 <p style="color: #fff;font-size: 15px;left:6px;text-align:center;margin-top:11px;font-weight: bold;">活跃节点</p>
+								   </div>
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" style="height:296px">
+										<!-- widget options:
+										usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+										data-widget-colorbutton="false"
+										data-widget-editbutton="false"
+										data-widget-togglebutton="false"
+										data-widget-deletebutton="false"
+										data-widget-fullscreenbutton="false"
+										data-widget-custombutton="false"
+										data-widget-collapsed="true"
+										data-widget-sortable="false"
+
+										-->
+										
+
+										<!-- widget div-->
+										<div style="height:262px">
+
+											<!-- widget edit box -->
+											<div class="jarviswidget-editbox">
+												<!-- This area used as dropdown edit box -->
+
+											</div>
+											<!-- end widget edit box -->
+
+											<!-- widget content -->
+											<div class="widget-body no-padding">
+
+												<div id="bar-chart" class="chart"></div>
+
+											</div>
+											<!-- end widget content -->
+
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->
+
+
+								</article>
+								<!-- WIDGET END -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+		
+		
+
+	</div>
+    
+	
+	
+		
+
+
+
+
+
+<!-- page scripts -->
+
+
+
+
+
+<!-- jQuery Dropdown Mobile -->
+
+
+<!-- jQuery Superfish -->
+
+
+
+
+<!-- theme scripts -->
+
+
+
+<!-- Custom Script -->
+
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	
+	
+
+	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+		
+
+		
+	
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+		<!-- BOOTSTRAP JS -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+
+		
+
+		
+
+		<!-- FastClick: For mobile devices -->
+		
+
+		<!--[if IE 7]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- Demo purpose only -->
+		
+
+		<!-- MAIN APP JS FILE -->
+		<script src="js/app.js"></script>
+
+		<!-- PAGE RELATED PLUGIN(S) -->
+
+		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+		<script src="js/plugin/flot/jquery.flot.cust.js"></script>
+		
+		
+		<script src="js/plugin/flot/jquery.flot.orderBar.js"></script>
+		<script src="js/plugin/flot/jquery.flot.pie.js"></script>
+		<script src="js/plugin/flot/jquery.flot.tooltip.js"></script>
+
+		<script type="text/javascript" src="network/asset/js/jquery.ztree-all-min.js"></script>
+		<script type="text/javascript" src="network/asset/CanvasXpress/js/canvasXpress.min.js"></script>
+		<script type="text/javascript" src="network/asset/js/lufylegend.min.js" ></script>
+		
+<script>
+var nodes=[{
+		  'id' : 'Level1-1',
+		  'name' : '主数据中心',
+		  'group' : 1,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'data-center.png',
+		  'x':600,
+		  'y':500,
+		  'size':10
+		},{
+		  'id' : 'Level1-2',
+		  'name' : '数据中心2',
+		  'group' : 1,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'data-center.png',
+		  'x':600,
+		  'y':500,
+		  'size':10
+		},{
+		  'id' : 'Level1-3',
+		  'name' : '数据中心3',
+		  'group' : 1,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'data-center.png',
+		  'x':600,
+		  'y':500,
+		  'size':10
+		},{
+		  'id' : 'Level2-1',
+		  'name' : '数据访问节点1',
+		  'group' : 2,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'data-node.png',
+		  'x':600,
+		  'y':500,
+		  'size':6
+		},{
+		  'id' : 'Level2-2',
+		  'name' : '数据访问节点2',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-3',
+		  'name' : '数据访问节点3',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-4',
+		  'name' : '数据访问节点4',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-5',
+		  'name' : '数据访问节点5',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-6',
+		  'name' : '数据访问节点6',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-7',
+		  'name' : '数据访问节点7',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-8',
+		  'name' : '数据访问节点8',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-9',
+		  'name' : '数据访问节点9',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-10',
+		  'name' : '数据访问节点10',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level2-11',
+		  'name' : '数据访问节点11',
+            'group' : 2,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'data-node.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-1',
+		  'name' : '用户系统1',
+		  'group' : 3,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'sys.png',
+		  'x':600,
+		  'y':500,
+		  'size':6
+		},{
+		  'id' : 'Level3-2',
+		  'name' : '用户系统2',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-3',
+		  'name' : '用户系统3',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-4',
+		  'name' : '用户系统4',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-5',
+		  'name' : '用户系统5',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-6',
+		  'name' : '用户系统6',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-7',
+		  'name' : '用户系统7',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-8',
+		  'name' : '用户系统8',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-9',
+		  'name' : '用户系统9',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-10',
+		  'name' : '用户系统10',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-11',
+		  'name' : '用户系统11',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-12',
+		  'name' : '用户系统12',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-13',
+		  'name' : '用户系统13',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-14',
+		  'name' : '用户系统14',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-15',
+		  'name' : '用户系统15',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-16',
+		  'name' : '用户系统16',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-17',
+		  'name' : '用户系统17',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-18',
+		  'name' : '用户系统18',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-19',
+		  'name' : '用户系统19',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-20',
+		  'name' : '用户系统20',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		} ,{
+		  'id' : 'Level3-21',
+		  'name' : '用户系统21',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-22',
+		  'name' : '用户系统22',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-23',
+		  'name' : '用户系统23',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-24',
+		  'name' : '用户系统24',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-25',
+		  'name' : '用户系统25',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-26',
+		  'name' : '用户系统26',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-27',
+		  'name' : '用户系统27',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		},{
+		  'id' : 'Level3-28',
+		  'name' : '用户系统28',
+            'group' : 3,
+            'shape' : 'image',
+            'width':100,
+            'height':100,
+            'imagePath':'sys.png',
+            'x':600,
+            'y':500,
+            'size':6
+		}];
+     var lines=[{
+		  'id1' : 'Level1-1',
+		  'id2' : 'Level1-2',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-2',
+		  'id2' : 'Level1-3',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-3',
+		  'id2' : 'Level1-1',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-1',
+		  'id2' : 'Level2-1',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'dashed'
+		},{
+		  'id1' : 'Level1-1',
+		  'id2' : 'Level2-2',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'dashed'
+		},{
+		  'id1' : 'Level1-1',
+		  'id2' : 'Level2-3',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'dashed'
+		},{
+		  'id1' : 'Level1-1',
+		  'id2' : 'Level2-4',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-2',
+		  'id2' : 'Level2-5',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-2',
+		  'id2' : 'Level2-6',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-2',
+		  'id2' : 'Level2-7',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-2',
+		  'id2' : 'Level2-8',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-3',
+		  'id2' : 'Level2-9',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-3',
+		  'id2' : 'Level2-10',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level1-3',
+		  'id2' : 'Level2-11',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-1',
+		  'id2' : 'Level3-1',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-1',
+		  'id2' : 'Level3-2',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-2',
+		  'id2' : 'Level3-3',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-2',
+		  'id2' : 'Level3-4',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-3',
+		  'id2' : 'Level3-5',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-3',
+		  'id2' : 'Level3-6',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-3',
+		  'id2' : 'Level3-7',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-4',
+		  'id2' : 'Level3-8',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-4',
+		  'id2' : 'Level3-9',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-5',
+		  'id2' : 'Level3-10',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-5',
+		  'id2' : 'Level3-11',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-5',
+		  'id2' : 'Level3-12',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-6',
+		  'id2' : 'Level3-13',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-6',
+		  'id2' : 'Level3-14',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-7',
+		  'id2' : 'Level3-15',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-7',
+		  'id2' : 'Level3-16',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-7',
+		  'id2' : 'Level3-17',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-8',
+		  'id2' : 'Level3-18',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-8',
+		  'id2' : 'Level3-19',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-8',
+		  'id2' : 'Level3-20',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		} ,{
+		  'id1' : 'Level2-9',
+		  'id2' : 'Level3-21',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-9',
+		  'id2' : 'Level3-22',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-9',
+		  'id2' : 'Level3-23',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-10',
+		  'id2' : 'Level3-24',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-10',
+		  'id2' : 'Level3-25',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-11',
+		  'id2' : 'Level3-26',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-11',
+		  'id2' : 'Level3-27',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		},{
+		  'id1' : 'Level2-11',
+		  'id2' : 'Level3-28',
+		  'color' : 'rgb(255,255,255)',
+		  'type' : 'line'
+		}];  
+        $('.ztree-center').click(function(){
+			var text=$(this).text();
+
+			for(var i=0;i<nodes.length;i++){
+				if(text.indexOf(nodes[i].name)>-1)
+				{
+					changeGrgh(nodes[i]);
+					break;
+				}
+			}
+            $(this).next().toggle();
+        });
+
+      //  $('.tree-header').click(function(){
+        //    $(this).siblings().toggle();
+         //   $(this).siblings().children().toggle();
+        //});
+
+			//ztree全局定义
+		var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+		//ztree test data
+		var zNodes2 =[
+			{ id:11, pId:1, name:"数据访问节点5", stdno:"111", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:111, pId:11, name:"用户系统10", stdno:"1111", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:112, pId:11, name:"用户系统11", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:112, pId:11, name:"用户系统12", stdno:"1113", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:12, pId:1, name:"数据访问节点6", stdno:"121", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjdh.png"},
+			{ id:121, pId:12, name:"用户系统13", stdno:"1221", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:122, pId:12, name:"用户系统14", stdno:"1222", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:13, pId:1, name:"数据访问节点7", stdno:"131", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:131, pId:13, name:"用户系统15", stdno:"1331", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:132, pId:13, name:"用户系统16", stdno:"1332", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:133, pId:13, name:"用户系统17", stdno:"1333", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:14, pId:1, name:"数据访问节点8", stdno:"141", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:141, pId:14, name:"用户系统18", stdno:"1441", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:142, pId:14, name:"用户系统19", stdno:"1442", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:143, pId:14, name:"用户系统20", stdno:"1443", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+		];
+       var zNodes1 =[
+           { id:11, pId:1, name:"数据访问节点1", stdno:"111", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+          { id:111, pId:11, name:"用户系统1", stdno:"1111", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:112, pId:11, name:"用户系统2", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:12, pId:1, name:"数据访问节点2", stdno:"121", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+           { id:121, pId:12, name:"用户系统3", stdno:"1221", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:122, pId:12, name:"用户系统4", stdno:"1222", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+		   { id:13, pId:1, name:"数据访问节点3", stdno:"131", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+          { id:131, pId:13, name:"用户系统5", stdno:"1331", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:132, pId:13, name:"用户系统6", stdno:"1332", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+		   { id:133, pId:13, name:"用户系统7", stdno:"1333", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:14, pId:1, name:"数据访问节点4", stdno:"141", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+           { id:141, pId:14, name:"用户系统8", stdno:"1441", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+           { id:142, pId:14, name:"用户系统9", stdno:"1442", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"}
+        ];
+var zNodes3 =[
+			{ id:11, pId:1, name:"数据访问节点9", stdno:"111", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:111, pId:11, name:"用户系统21", stdno:"1111", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:112, pId:11, name:"用户系统22", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:113, pId:11, name:"用户系统23", stdno:"1112", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:12, pId:1, name:"数据访问节点10", stdno:"121", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjdh.png"},
+			{ id:121, pId:12, name:"用户系统24", stdno:"1221", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:122, pId:12, name:"用户系统25", stdno:"1222", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"down", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxth.png"},
+			{ id:13, pId:1, name:"数据访问节点11", stdno:"131", stdname:"NODE", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"", open:true,icon:"./asset/img/treeicon/sjfwjd.png"},
+			{ id:131, pId:13, name:"用户系统26", stdno:"1331", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:132, pId:13, name:"用户系统27", stdno:"1332", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"},
+			{ id:133, pId:13, name:"用户系统28", stdno:"1333", stdname:"USER", bakstd:"", distdate:"", distcomp:"", fulltext:"", summary:"", scope:"", privacy:"",icon:"./asset/img/treeicon/yhxt.png"}
+		];
+       $(document).ready(function(){
+	   
+			$.ajax( {
+            type : "GET",
+            url : getRootPath() + "/api/v1/ztree/ztree/centernode",
+            cache : false,
+            async : false,
+            success : function(data) {
+			
+            //    console.log(data);
+			alert("success");
+                addZtreeCenterNode(data);
+            },
+            error :function(data){
+			alert("faild");
+                result= data;
+            }
+        });
+$.fn.zTree.init($("#ztree1"), setting, zNodes1);
+           $.fn.zTree.init($("#ztree2"), setting, zNodes2);
+           $.fn.zTree.init($("#ztree3"), setting, zNodes3);
+       });
+	   function addZtreeCenterNode(data){
+			var json = eval('(' + data + ')'); 
+			var tmp =0;
+			//alert(json[0].name);
+			for(var o in json){
+				console.log(json[o].name);
+
+				var center = '<div class="tree-header2" style="background:#263948;"><img class="header-icon3" id="img-1" src="./asset/ico/fy.png" alt="icon" width="16" height="19"/>'+json[o].name+'<img class="header-icon4" id="img-2" src="./image/arrow-2.png" alt="icon" width="16" height="16"/>'
+				document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML +center;
+				tmp=tmp+1;
+				childztree = '<div class="center-service"><div id="ztree'+tmp+'" class="ztree"></div></div>'
+				document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML+childztree;
+				var treeId = '#ztree'+tmp;
+				
+				$.ajax( {
+            		type : "POST",
+            		url : getRootPath()+"/api/v1/ztree/childnodes?centerIp="+json[o].id,
+            		async : false,
+            		success : function(data) {
+                		var zNodes = data;
+                		$.fn.zTree.init($(treeId), setting, zNodes);
+                 	},
+            		error :function(data){
+                		result= data;
+            		}
+            	});
+			}
+			
+			$('.tree-header2').click(function(){
+            	showTree();
+       	    });
+		}
+
+		
+		var showTree = function(){
+			var treeHeader = event.target;
+			var treeContent = event.target.nextElementSibling;
+			if(treeContent.style.display != ''){
+				treeContent.style.display = '';
+				treeHeader.style.background = "#263948";
+			}else{
+				treeContent.style.display = 'block';
+				treeHeader.style.background = "#24313e";
+			}
+		}
+		/*
+           $.fn.zTree.init($("#ztree1"), setting, zNodes1);
+           $.fn.zTree.init($("#ztree2"), setting, zNodes2);
+           $.fn.zTree.init($("#ztree3"), setting, zNodes3);
+           //$.fn.zTree.init($("#ztree4"), setting, zNodes1);
+           //$.fn.zTree.init($("#ztree5"), setting, zNodes1);
+    
+*/
+		function zTreeOnClick(event, treeId, treeNode) {
+			document.getElementById("data-network").style.display = 'block';
+			document.getElementById("network-name").innerHTML = "基本属性";
+			var name=treeNode.name;
+			if(treeNode.stdname!="USER"){
+			for(var i=0;i<nodes.length;i++){
+				if(name==nodes[i].name){
+					changeGrgh(nodes[i]);
+					break;
+				}
+			}
+			}
+		}
+
+        function Smearing($object){
+            var self = this;
+            base(self,LSprite,[]);
+
+            self.x = 687.5000000000001;
+            self.y = 406.11164463386166;
+
+            self.mode = "";
+
+            self.smearingSprite = new LSprite();
+            self.addChild(self.smearingSprite);
+
+            self.object = $object;
+
+            self.originalSprite = new LSprite();
+            self.addChild(self.originalSprite);
+            self.originalSprite.addChild(self.object);
+
+            self.addEventListener(LEvent.ENTER_FRAME,self.smeared);
+        }
+        Smearing.prototype.smeared = function(self){
+            var smearingChild = new SmearingChild(self.originalSprite,self.object);
+            self.smearingSprite.addChild(smearingChild);
+
+            for(var key in self.smearingSprite.childList){
+                LTweenLite.to(self.smearingSprite.childList[key],0.5,{
+                    alpha: 0,
+                    onComplete:function(o){
+                        self.smearingSprite.removeChild(o);
+                    }
+                });
+            }
+        };
+        Smearing.prototype.to = function($duration,$vars){
+            var self = this;
+
+            $vars.onComplete = function(){
+                self.mode = "complete";
+            }
+            LTweenLite.to(self.originalSprite,$duration,$vars);
+        };
+
+        /**
+         * SmearingChild
+         * @param $parent 确定拖尾位置的对象
+         * @param $object 要添加拖尾效果的对象
+         */
+        function SmearingChild($parent,$object){
+            var self = this;
+            base(self,LSprite,[]);
+
+            self.addChild($object);
+
+            self.x = $parent.x;
+            self.y = $parent.y;
+            self.alpha = 0.6;
+        }
+        $(document).ready(function(){
+                    setTimeout(function(){
+                        init(10,'smear',maincanvas.width,maincanvas.height,main);
+                        var backLayer,meteorLayer;
+                        var back,meteor;
+                        var maxFrame = 40,indexFrame = 0;
+
+                        function main(){
+                            //LStage.setDebug(true);
+                            //加入底板层
+                            backLayer = new LSprite();
+                            addChild(backLayer);
+                            //加入流星层
+                            meteorLayer = new LSprite();
+                            addChild(meteorLayer);
+
+                            var childSmear = $('#smear').children()[0];
+                            console.log(childSmear);
+                            childSmear.style.zIndex = -1;
+
+                            for(i = 0;i<cx2.data.nodes.length;i++){
+                                var executeLoop = function(){
+                                    var dataTmp = cx2.data.nodes[i];
+                                    var spotX = (cx2.offsetX + cx2.data.nodes[i].x) * cx2.scaleFactor;
+                                    var spotY = (cx2.offsetY + cx2.data.nodes[i].y) * cx2.scaleFactor;
+                                    var meteorSpot = new LSprite();
+                                    meteorSpot.graphics.drawArc(0,"#FFFFFF",[spotX,spotY,10,0,2*Math.PI],true,"rgb(189, 35, 35)");
+                                    meteorSpot.alpha = 0;
+                                    meteorLayer.addChild(meteorSpot);
+                                    meteorSpot.addEventListener(LMouseEvent.MOUSE_DOWN,function(){
+                                                document.getElementById("sidebar-statu").style.display = 'block';
+
+                                                if(dataTmp.color=="rgb(127,127,127)"){
+                                                    document.getElementById("sidebar-statu").style.display = 'none';
+                                                }
+                                                else{
+                                                    document.getElementById("sidebar-statu").style.display = 'block';
+
+                                                    if(dataTmp.group==1&&dataTmp.id=="Level1-1"){  //主数据中心具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.10</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>主</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>北京大兴</td></tr><tr><td><span class="label">4</span></td><td>中心容量</td><td>100</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>300</td></tr></table> </div>'; }
+                                                    else if(dataTmp.group==1&&dataTmp.id!="Level1-1"){  //从数据中心具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.10</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>从</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>北京市大兴区金苑路24号</td></tr><tr><td><span class="label">4</span></td><td>中心容量</td><td>100</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>300</td></tr></table> </div>';}
+                                                    else if(dataTmp.group==2){ 	//数据访问节点具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.2</td></tr><tr><td><span class="label">2</span></td><td>访问类型</td><td>情报信息库</td></tr><tr><td><span class="label">3</span></td><td>用户系统IP</td><td>192.168.124.330</td></tr></table> </div>'; }
+                                                    else { 	//用户系统具体信息
+                                                        document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+dataTmp.name+'<a id="closeButton" class="mo-close" title="关闭"></a>&nbsp;&nbsp;&nbsp;&nbsp</div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.2</td></tr><tr><td><span class="label">2</span></td><td>所属机构</td><td>机构1</td></tr><tr><td><span class="label">3</span></td><td>系统类型</td><td>类型1</td></tr><tr><td><span class="label">4</span></td><td>接口1</td><td>正常显示</td></tr><tr><td><span class="label">5</span></td><td>接口2</td><td>等待返回</td></tr><tr><td><span class="label">6</span></td><td>接口3</td><td>等待返回</td></tr><tr><td><span class="label">7</span></td><td>接口4</td><td>正常显示</td></tr></table> </div>';}
+
+                                                    var msgBox = document.getElementById('sidebar-statu');
+                                                    var closeBtn = document.getElementById('closeButton');
+                                                    closeBtn.onclick=function(){
+                                                        msgBox.style.display = 'none';}
+                                                }
+                                            }
+                                    );
+                                }
+                                executeLoop();
+                            };
+
+                            var test = document.getElementById('test');
+
+                            test.onclick = function(){
+                                var childSmear = $('#smear').children()[0];
+                                console.log(childSmear);
+                                childSmear.style.zIndex = -1;
+                                var zuobiaox = (cx2.offsetX + cx2.data.nodes[0].x) * cx2.scaleFactor;
+                                var zuobiaoy = (cx2.offsetY + cx2.data.nodes[0].y) * cx2.scaleFactor;
+                                var zuobiaox1 = (cx2.offsetX + cx2.data.nodes[1].x) * cx2.scaleFactor;
+                                var zuobiaoy1 = (cx2.offsetY + cx2.data.nodes[1].y) * cx2.scaleFactor;
+                                console.log(cx2.scaleFactor);
+                                console.log(zuobiaox);
+                                console.log(zuobiaoy);
+                                console.log(zuobiaox1);
+                                console.log(zuobiaoy1);
+                                //画一个黄色矩形作为一颗流星
+                                meteor = new LSprite();
+                                meteor.graphics.drawArc(0,"#ff0000",[zuobiaox,zuobiaoy,2,0,2*Math.PI],true,"#000000");
+                                meteor1 = new LSprite();
+                                meteor1.graphics.drawArc(3,"#FFFFFF",[zuobiaox,zuobiaoy,4,0,2*Math.PI],true,"#0066FF");
+
+                                meteorLayer.addChild(meteor1);
+
+                                LTweenLite.to(meteor1,1.5,{
+                                    x: zuobiaox1-zuobiaox,
+                                    y: zuobiaoy1-zuobiaoy,
+                                    onComplete:function(o){
+                                        meteorLayer.removeChild(o);
+                                    }
+                                });
+                                meteorLayer.addEventListener(LEvent.ENTER_FRAME,onframe);
+
+                                var count = 1;
+                                function onframe(){
+                                    if(count<50){
+                                        var meteor2 = new LSprite();
+
+                                        meteor2.graphics.drawArc(4,"#0066FF",[zuobiaox,zuobiaoy,2-2*count/50,0,2*Math.PI],true,"#FFFFFF");
+                                        meteor2.alpha = 1-0.95*count/50;
+                                        meteorLayer.addChild(meteor2);
+                                        LTweenLite.to(meteor2,1.5,{
+                                            alpha:1-0.95*count/50,
+                                            x: zuobiaox1-zuobiaox,
+                                            y: zuobiaoy1-zuobiaoy,
+                                            onComplete:function(o){
+                                                console.log("动画完成！")
+                                                meteorLayer.removeChild(o);
+                                            }
+                                        });
+                                        count ++
+                                    }
+
+                                }
+                            }
+                        }
+
+                    },0);
+                }
+        );
+
+		
+var graphic = document.getElementById('graphic');
+	var maincanvas = document.getElementById('main');
+	maincanvas.width = graphic.scrollWidth;
+	var cx2 = new CanvasXpress('main',
+{
+		'nodes' : nodes,
+		'edges' : lines,
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700,
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false},
+		 {
+'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			if(dataTmp.group==1)
+				window.parent.addPanel();
+				
+			},
+	  'click' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			document.getElementById("data-network").style.display = 'block';
+			if(dataTmp.group<3){
+			document.getElementById("network-name").innerHTML = "基本信息";
+			changeGrgh(dataTmp);
+			}
+	  }
+ }
+	);
+	$('.tree-header').click(function()
+	{
+	$('#container-main').children().remove();
+	$('#container-main').remove();
+	$('#main').children().remove();
+	$('#main').remove();
+			var main='<canvas id="main" height="360px !important"  ></canvas>';
+			$('#smear').before(main);
+			document.getElementById('main').width=graphic.scrollWidth;
+			var cx2 = new CanvasXpress('main',
+{
+		'nodes' : nodes,
+		'edges' : lines,
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700,
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false},
+		 {
+
+		'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			if(dataTmp.group==1)
+				window.parent.addPanel();
+				
+			},
+	  'click' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			document.getElementById("data-network").style.display = 'block';
+			if(dataTmp.group<3){
+			document.getElementById("network-name").innerHTML = "基本信息";
+			changeGrgh(dataTmp);
+			}
+	  }
+ }
+	);
+	//location.reload() ;
+	});
+	function changeGrgh( selectedNode){
+	
+	$(".td11").text("名称");
+	$(".td12").text(selectedNode.name);
+			$(".td21").text("地址");
+			$(".td22").text("北京");
+			$(".td31").text("IP：");
+			$(".td32").text("192.168.1.10");
+			$(".td41").text("建立时间");
+			$(".td42").text("201408");
+			$(".td51").text("主中心节点");
+			$(".td52").text("否");
+			$(".td61").text("当前状态");
+			$(".td62").text("正常显示");
+			$(".td71").text("下级节点");
+			$(".td72").text("");
+			
+			
+	//delete cx2;
+	$('#container-main').children().remove();
+	$('#container-main').remove();
+	$('#main').children().remove();
+	$('#main').remove();
+			var main='<canvas id="main" height="360px !important"  ></canvas>';
+			$('#smear').before(main);
+			document.getElementById('main').width=graphic.scrollWidth;
+	
+			
+			//var maincanvas1 = document.getElementById('main1');
+	
+	var Midnode=selectedNode;
+	var Cnodes=[];
+	var Clines=[];
+	Cnodes.push(Midnode);
+	//alert(Cnodes[2].name);
+	if(Midnode.group==1){
+	Cnodes.push({
+		  'id' : 'Level4-1',
+		  'name' : '元数据信息',
+		  'group' : 2,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'message.png',
+		  'x':600,
+		  'y':500,
+		  'size':6
+	
+					});
+Cnodes.push(
+	{
+			'id' : 'Level4-2',
+		  'name' : '基础作战数据',
+		  'group' : 2,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'message.png',
+		  'x':600,
+		  'y':500,
+		  'size':6});
+		  
+	}
+	else
+	{
+	Cnodes.push({
+		  'id' : 'Level4-1',
+		  'name' : '情报数据库',
+		  'group' : 2,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'yewu.png',
+		  'x':600,
+		  'y':500,
+		  'size':6
+	
+					});
+					Cnodes.push(
+					{
+		  'id' : 'Level4-2',
+		  'name' : '电抗数据库',
+		  'group' : 2,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'yewu.png',
+		  'x':600,
+		  'y':500,
+		  'size':6
+	
+					});
+					Cnodes.push(
+					{
+		  'id' : 'Level4-3',
+		  'name' : '反导情报',
+		  'group' : 2,
+		  'shape' : 'image',
+		  'width':100,
+		  'height':100,
+		  'imagePath':'yewu.png',
+		  'x':600,
+		  'y':500,
+		  'size':6
+	
+					}
+					);
+	}
+	for(var i=0;i<lines.length;i++)
+	{
+		if((lines[i].id1==Midnode.id)){
+		if((lines[i].id1.charAt(5)=='1'&&lines[i].id2.charAt(5)=='2')||(lines[i].id1.charAt(5)=='2'&&lines[i].id2.charAt(5)=='3'))
+			Clines.push(lines[i]);	
+		}				
+	}
+	for(var j=0;j<Clines.length;j++){
+	var id=Clines[j].id2;
+	for(var i=0;i<nodes.length;i++){
+	if(id==nodes[i].id){
+		Cnodes.push(nodes[i]);
+		break;
+		}
+	}
+	}
+	
+	Clines.push(
+		{
+		'id1' : Midnode.id,
+		'id2' : Cnodes[1].id,
+		'color' : 'rgb(255,255,255)',
+		'type' : 'dashed'
+		});
+		Clines.push({
+		'id1' : Midnode.id,
+		'id2' : Cnodes[2].id,
+		'color' : 'rgb(255,255,255)',
+		'type' : 'dashed'
+		}
+	);
+	
+	if(Midnode.group>1)
+	{
+	Clines.push({
+		'id1' : Midnode.id,
+		'id2' : Cnodes[3].id,
+		'color' : 'rgb(255,255,255)',
+		'type' : 'dashed'
+		});
+	}
+	//delete cx2;
+	
+	 	var  cx1 = new CanvasXpress('main',
+	{
+		'nodes' :Cnodes,
+		
+		'edges' : Clines, 
+		
+		 'legend' : {
+              'nodes' : [],'pos' : {
+                'nodes' : {
+                  'x' : -700,
+                  'y' : -500
+                }
+              }
+			 }
+
+	  },
+
+	  {	'backgroundGradient1Color': 'rgba(0,0,0,0)',
+		'background':'rgba(0,0,0,0)',
+         // 'backgroundGradient2Color': 'rgba(0,0,0,0)',
+          'gradient': true,
+          'graphType': 'Network',
+		  'canvasBoxColor' : 'rgba(0,0,0,0)',
+          'indicatorCenter': 'rainbow',
+		  'decorationsPosition': 'top',
+          'nodeFontColor': 'rgb(255,255,255)',
+		  'networkLayoutType': 'radial',
+          'showAnimation': false},
+		 {
+
+	  'dblclick' : function(o, e, t) {
+			var dataTmp = o.nodes[0];
+			//document.getElementById("data-network").style.display = 'block';
+			//document.getElementById("network-name").innerHTML = "bvjdviu";
+			 
+			
+	  },
+	 
+ 
+  'click' : function(o, e, t) {
+	  
+			//		var dataTmp = o.nodes[0];
+			//document.getElementById("data-network").style.display = 'block';
+			//document.getElementById("network-name").innerHTML = "bvjdviu";
+			
+					}
+					}
+	);
+	
+	}
+		</script>
+		
+		
+		<script type="text/javascript">
+			// PAGE RELATED SCRIPTS
+
+			/* chart colors default */
+			var $chrt_border_color = "#efefef";
+			var $chrt_grid_color = "#DDD"
+			var $chrt_main = "#E24913";
+			/* red       */
+			var $chrt_second = "#6595b4";
+			/* blue      */
+			var $chrt_third = "#FF9F01";
+			/* orange    */
+			var $chrt_fourth = "#7e9d3a";
+			/* green     */
+			var $chrt_fifth = "#BD362F";
+			/* dark red  */
+			var $chrt_mono = "#000";
+
+			$(document).ready(function() {
+
+				// DO NOT REMOVE : GLOBAL FUNCTIONS!
+				pageSetUp();
+
+				
+
+				/* bar chart */
+
+				if ($("#bar-chart").length) {
+
+					var data1 = [];
+					for (var i = 0; i <= 3; i += 1)
+						data1.push([i, parseInt(Math.random() * 30)]);
+
+					var data2 = [];
+					for (var i = 0; i <= 3; i += 1)
+						data2.push([i, parseInt(Math.random() * 30)]);
+
+					var data3 = [];
+					for (var i = 0; i <= 3; i += 1)
+						data3.push([i, parseInt(Math.random() * 30)]);
+
+					var ds = new Array();
+
+					ds.push({
+						data : data1,
+						bars : {
+							show : true,
+							barWidth : 0.2,
+							order : 1,
+						}
+					});
+					ds.push({
+						data : data2,
+						bars : {
+							show : true,
+							barWidth : 0.2,
+							order : 2
+						}
+					});
+					ds.push({
+						data : data3,
+						bars : {
+							show : true,
+							barWidth : 0.2,
+							order : 3
+						}
+					});
+
+					//Display graph
+					$.plot($("#bar-chart"), ds, {
+						colors : [$chrt_second, $chrt_fourth, "#666", "#BBB"],
+						grid : {
+							show : true,
+							hoverable : true,
+							clickable : true,
+							tickColor : $chrt_border_color,
+							borderWidth : 0,
+							borderColor : $chrt_border_color,
+						},
+						legend : true,
+						tooltip : true,
+						tooltipOpts : {
+							content : "<b>%x</b> = <span>%y</span>",
+							defaultTheme : false
+						}
+
+					});
+
+				}
+
+				/* end bar chart */
+
+				/* pie chart */
+
+				if ($('#pie-chart').length) {
+
+					var data_pie = [];
+					var series = Math.floor(Math.random() * 10) + 1;
+					for (var i = 0; i < series; i++) {
+						data_pie[i] = {
+							label : "Series" + (i + 1),
+							data : Math.floor(Math.random() * 100) + 1
+						}
+					}
+
+					$.plot($("#pie-chart"), data_pie, {
+						series : {
+							pie : {
+								show : true,
+								innerRadius : 0.5,
+								radius : 1,
+								label : {
+									show : false,
+									radius : 2 / 3,
+									formatter : function(label, series) {
+										return '<div style="font-size:11px;text-align:center;padding:4px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+									},
+									threshold : 0.1
+								}
+							}
+						},
+						legend : {
+							show : true,
+							noColumns : 1, // number of colums in legend table
+							labelFormatter : null, // fn: string -> string
+							labelBoxBorderColor : "#000", // border color for the little label boxes
+							container : null, // container (as jQuery object) to put legend in, null means default on top of graph
+							position : "ne", // position of default legend container within plot
+							margin : [5, 10], // distance from grid edge to default legend container within plot
+							backgroundColor : "#efefef", // null means auto-detect
+							backgroundOpacity : 1 // set to 0 to avoid background
+						},
+						grid : {
+							hoverable : true,
+							clickable : true
+						},
+					});
+
+				}
+
+				/* end pie chart */
+
+				/* site stats chart */
+
+				if ($("#site-stats").length) {
+
+					var pageviews = [[1, 75], [3, 87], [4, 93], [5, 127], [6, 116], [7, 137], [8, 135], [9, 130], [10, 167], [11, 169], [12, 179], [13, 185], [14, 176], [15, 180], [16, 174], [17, 193], [18, 186], [19, 177], [20, 153], [21, 149], [22, 130], [23, 100], [24, 50]];
+					var visitors = [[1, 65], [3, 50], [4, 73], [5, 100], [6, 95], [7, 103], [8, 111], [9, 97], [10, 125], [11, 100], [12, 95], [13, 141], [14, 126], [15, 131], [16, 146], [17, 158], [18, 160], [19, 151], [20, 125], [21, 110], [22, 100], [23, 85], [24, 37]];
+					console.log(pageviews)
+					var plot = $.plot($("#site-stats"), [{
+						data : pageviews,
+						label : "Your pageviews"
+					}, {
+						data : visitors,
+						label : "Site visitors"
+					}], {
+						series : {
+							lines : {
+								show : true,
+								lineWidth : 1,
+								fill : true,
+								fillColor : {
+									colors : [{
+										opacity : 0.1
+									}, {
+										opacity : 0.15
+									}]
+								}
+							},
+							points : {
+								show : true
+							},
+							shadowSize : 0
+						},
+						xaxis : {
+							mode : "time",
+							tickLength : 10
+						},
+
+						yaxes : [{
+							min : 20,
+							tickLength : 5
+						}],
+						grid : {
+							hoverable : true,
+							clickable : true,
+							tickColor : $chrt_border_color,
+							borderWidth : 0,
+							borderColor : $chrt_border_color,
+						},
+						tooltip : true,
+						tooltipOpts : {
+							content : "%s for <b>%x:00 hrs</b> was %y",
+							dateFormat : "%y-%0m-%0d",
+							defaultTheme : false
+						},
+						colors : [$chrt_main, $chrt_second],
+						xaxis : {
+							ticks : 15,
+							tickDecimals : 2
+						},
+						yaxis : {
+							ticks : 15,
+							tickDecimals : 0
+						},
+					});
+
+				}
+
+				/* end site stats */
+
+
+			});
+
+			/* end flot charts */
+
+		</script>
+
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <title>分布式数据服务实时监控中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ECharts">
+    <meta name="author" content="linzhifeng@baidu.com">
+
+    <script src="../assets/js/esl/esl.js"></script>
+    <script src="../assets/js/codemirror.js"></script>
+    <script src="../assets/js/javascript.js"></script>
+
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/codemirror.css" rel="stylesheet">
+    <link href="../assets/css/monokai.css" rel="stylesheet">
+    <link href="../assets/css/echartsHome.css" rel="stylesheet">
+	<link href="../assets/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+	
+    <link rel="shortcut icon" href="../asset/ico/favicon.png">
+	<style>
+	
+		table {
+			*border-collapse: collapse; /* IE7 and lower */
+			border-spacing: 0;
+			width: 100%;
+			color:#ffffff;
+		}
+		.bordered {
+			border: solid #0E5BE2 0px;/* outside */
+			-moz-border-radius: 6px;
+			-webkit-border-radius: 6px;
+			border-radius: 6px;		
+		}
+
+		.bordered tr:hover {
+
+			/*background: #08fff7;*/
+			background: #18A8EC; 
+			-o-transition: all 0.1s ease-in-out;
+			-webkit-transition: all 0.1s ease-in-out;
+			-moz-transition: all 0.1s ease-in-out;
+			-ms-transition: all 0.1s ease-in-out;
+			transition: all 0.1s ease-in-out; 
+			border-top: 1px solid #000;				
+		}    
+			
+		.bordered td {
+			/*border-left: 1px solid #ccc;
+			border-top: 1px solid #ccc;*/
+			padding: 8px;
+			text-align: left;    
+		}
+		 .bordered th {
+			padding: 8px;
+			text-align: left;    
+		}
+
+		.bordered th {
+			background-color: #0090ff;
+			-moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;      
+			border-top: none;
+			text-shadow: 0 1px 0 rgba(255,255,255,.5);
+			font-weight:normal!important;
+		}
+
+		.bordered th:first-child {
+			-moz-border-radius: 6px 0 0 0;
+			-webkit-border-radius: 6px 0 0 0;
+			border-radius: 6px 0 0 0;*/
+		}
+		
+		.bordered td:first-child, .bordered th:first-child {
+			border-left: none;
+		}
+	</style>
+
+	</head>
+
+<body style="background-color:#000000;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+<div style=" margin:0 5px 0 5px" >
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id="test" class="brand" href="javascript:void(0);">  分布式数据服务实时监控中心</a> 
+          <div class="nav-collapse collapse">
+              <a id="forkme_banner" href="#">关于我们</a>
+              <ul class="nav">
+                <li class="active"><a href="#" class="active"><i class="icon-home icon-white"></i>主页</a></li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">友情链接 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+
+                    <li><a href="#" target="_blank">单位主站</a></li>
+                    <li><a href="#" target="_blank">情报融合</a></li>
+                    <li><a href="#" target="_blank">标准体系管理</a></li>
+					
+                  </ul>
+                </li>
+              </ul>
+           </div><!--/.nav-collapse -->
+      </div> <!-- </div> /.container -->
+      </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar-wrapper -->
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div id="sidebar-code" class="span4" style="width:17% !important;position:absolute;left:10px;top:90px;z-index:1;">
+                <div class="well sidebar-nav">
+                    <div class="nav-header"><span id="ztreeText">树形结构</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="ztreeShow">隐藏</a></div>
+                    <div id="ztree" class="ztree">
+					</div>
+                </div><!--/.well -->
+            </div><!--/span-->
+			
+			<div id="timediv" class="span4" style="position:absolute;left:200px;top:45px;z-index:1; "></div>
+			
+			
+            <div id="graphic" class="span8" style="width:94% !important;">
+                <canvas id="main" width="94%" height="800px">				
+				</canvas>
+				<div id="smear" ></div>
+                <div>                  
+                </div>
+            </div><!--/span-->
+			
+			<div id="sidebar-statu" class="span4" style="width:19% !important;display:none;position:absolute;right:10px;top:88px;">
+
+              </div><!--/.well -->
+            </div><!--/span-->
+        </div><!--/row-->
+        <hr>
+        <footer>
+          <p class="pull-right"><a href="#">返回顶部</a></p>
+		  <span>日志显示</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="logShow">隐藏</a>
+		  <div id="logdiv">
+			  <ul id="showLog" style="height:60px;overflow:hidden;color:#FFFFFF"></ul>
+		  </div>
+        </footer>
+
+    <script src="../assets/js/jquery.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.ztree-all-min.js"></script>
+	<script type="text/javascript" src="../assets/CanvasXpress/js/canvasXpress.min.js"></script>
+	<script src="../assets/js/lufylegend.min.js" type="text/javascript"></script>   
+	<script type="text/javascript" src="../assets/js/ScriptEngine.js" ></script>	
+	
+	<script>
+	  window.onbeforeunload = function() {   
+            var n = window.event.screenX - window.screenLeft;   
+            var b = n > document.documentElement.scrollWidth-20;   
+            if(b && window.event.clientY < 0 || window.event.altKey){   
+                if(webSocket) {
+                	webSocket.close();
+                } 
+            }else{
+                if(webSocket) {
+                	webSocket.close();
+                } 
+            }
+        }  
+
+	var logContainer = document.getElementById('showLog');
+	logContainer.scrollTop = 0;
+	var insertLog = insert;
+		
+		function insert(logContent){
+		var liDom = document.createElement('li');
+		liDom.innerHTML = '';
+		logContainer.appendChild(liDom);
+		var intervalCount = 0;
+		var intervalHandler = setInterval(function(){
+			if(intervalCount > 20){
+				clearInterval(intervalHandler);
+			}
+			logContainer.scrollTop +=1;
+			intervalCount ++;
+		},50);
+		contentLength = 0;
+		var contentHandler = setInterval(function(){
+			if(contentLength > logContent.length){
+				clearInterval(contentHandler);
+			}
+			liDom.innerHTML = logContent.substring(0,contentLength);
+			contentLength++;
+			
+		},1);
+	}
+	insertLog('动态实时日志展示');
+	function ShowLog(){
+		var logdiv = document.getElementById('logdiv');
+		var logShow = document.getElementById('logShow');
+		if(logShow.innerHTML == "隐藏"){
+			logdiv.style.display = 'none';
+			logShow.innerHTML = "显示"
+		}else if(logShow.innerHTML == "显示"){
+			logdiv.style.display = 'block';
+			logShow.innerHTML = "隐藏";
+		}
+	}
+	document.getElementById('logShow').onclick = ShowLog;
+	function showTree(){
+		var ztree = document.getElementById('ztree');
+		var ztreeText = document.getElementById('ztreeText');
+		var ztreeShow = document.getElementById('ztreeShow');
+		if(ztreeShow.innerHTML == "隐藏"){
+			ztree.style.display = 'none';
+			ztreeShow.innerHTML = "显示"
+		}else if(ztreeShow.innerHTML == "显示"){
+			ztree.style.display = 'block';
+			ztreeShow.innerHTML = "隐藏";
+		}
+	}
+	document.getElementById('ztreeShow').onclick = showTree;
+	
+	function closeTable(){
+		document.getElementById("sidebar-statu").style.display = 'none';
+	}
+
+	//获取当前时间
+	function TimeDemo(){   
+			var d,s = "当前北京时间为：";
+			var c = ":"; 
+			d = new Date();
+			//s +='20'; 
+			s += d.getFullYear()+'年';
+			s += d.getMonth()+ 1 + '月'; 
+			s += d.getDate() + '日 ';
+
+			var hour = "";
+	        if(d.getHours()<10){hour = "0" + d.getHours();}	
+			else {hour = d.getHours();}		
+			s += hour + c;   
+			
+			var min = "";
+			if(d.getMinutes()<10){min = "0" + d.getMinutes();}	
+			else {min = d.getMinutes();}	
+			s += min + c;   
+			
+			var sec = "";
+			if(d.getSeconds()<10){sec = "0" + d.getSeconds();}	
+			else {sec = d.getSeconds();}
+			s += sec;
+			
+			//s += d.getMilliseconds();   
+			document.getElementById('timediv').innerHTML='<div id="timetext" class="nav-header">'+s+'</div>';		
+			setTimeout("TimeDemo();", 1000);
+			} 	   
+
+			TimeDemo();
+	
+	
+	//线动画效果
+		//ztree全局定义
+	var setting = {
+			
+			edit: {
+				enable: false,
+				editNameSelectAll: true,
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			async:{
+			    type:"post",
+				enable:true,
+				contentType:"application/json",
+				url:"/monitor/api/v1/ztree/ztreenodes"
+			},
+			callback:{
+				asyncSuccess: zTreeOnAsyncSuccess,
+				asyncError: zTreeOnAsyncError,
+				onClick: zTreeOnClick
+			}
+			
+			
+		};
+		function zTreeOnAsyncError(event, treeId, treeNode){ 
+			alert("异步加载失败!"); 
+		}
+		function zTreeOnAsyncSuccess(event, treeId, treeNode, msg){ 
+				console.log(msg);
+		}
+		var zNodes =[]
+		$(document).ready(function(){
+			$.fn.zTree.init($("#ztree"), setting, zNodes);
+			console.log(zNodes);  
+		});
+		function zTreeOnClick(event, treeId, treeNode) {
+			  if(treeNode.stdname=="root"){	//down节点点击无反应
+				document.getElementById("sidebar-statu").style.display = 'none';
+			  }
+			  else{	//非dowm节点点击显示表格
+					document.getElementById("sidebar-statu").style.display = 'block';
+				
+					if(treeNode.stdname=="数据中心"){  //数据中心具体信息	
+						accessCenterNode(treeNode.id, 2)
+					}
+					else if(treeNode.stdname=="用户系统"){ 	//数据访问节点具体信息	
+						accessSysNode(treeNode.id, 0)	
+					}					
+					else { 	//用户系统具体信息
+						accessANode(treeNode.id, 1)
+					}
+					
+				var msgBox = document.getElementById('sidebar-statu');
+				var closeBtn = document.getElementById('closeButton');
+				closeBtn.onclick=function(){
+					msgBox.style.display = 'none';}
+				} 
+		}
+		 function refresh(){
+              var treeObj = $.fn.zTree.getZTreeObj("ztree");
+              treeObj.reAsyncChildNodes(null, "refresh");
+        }
+	var tmp = new Object();
+	function findDataAccess(st, rt) {
+			 var se = new ScriptEngine();
+			 se.setClass("pku.edu.cn.nodeoperation.NodeOperation");
+			 se.setMethod("getNodeInfo");
+			 var re = se.invoke(st, rt);
+			 return re;
+		} 
+		var wsUrl;
+		if (window.location.protocol == 'https:') {  
+	        wsUrl = 'wss://' + window.location.host + '/monitor/websocket';
+		} else {
+	        wsUrl = 'ws://' + window.location.host + '/monitor/websocket';
+		}
+		var webSocket = 
+			new WebSocket(wsUrl);
+		
+		webSocket.onerror = function(event) {
+			onError(event)
+		};
+		webSocket.onopen = function(event) {
+			onOpen(event)
+		};
+
+		webSocket.onmessage = function(event) {
+			onMessage(event)
+		};
+		webSocket.onclose = function(event){
+			console.log("websocket closed");
+		}
+		var graphic = document.getElementById('graphic');
+		var maincanvas = document.getElementById('main');
+		maincanvas.width = graphic.scrollWidth;
+	
+		function onMessage(event) {
+			var json = eval('(' + event.data + ')');
+			console.log(json)
+			if(json.addNode){
+				var node = json.addNode;
+				console.log(node);
+				var edge = json.addEdge;
+				tmp.addNode(node,tmp.data);
+				console.log(edge);
+				for(var i=0;i<edge.length;i++){
+					tmp.addEdge(edge[i]);
+					console.log(edge[i]);
+				}
+				tmp.updateData();
+				refresh();
+				console.log(tmp);
+			}
+			else if(json.mainCenterChanged){
+				console.log("进来了");
+				var nodes1 = tmp.data.nodes;
+				var maincenter;
+				console.log(json.mainCenterChanged);
+				console.log("nodes size is");
+				console.log(nodes1.length);
+				for(var i = 0;i<nodes1.length;i++){
+					if(nodes1[i].group==2){
+						console.log("是中心节点 ");
+						if(nodes1[i].size==3){
+							console.log("原来的主中心");
+							console.log(nodes1[i]);
+							console.log("现在的size");
+							nodes1[i].size=1;
+							console.log(nodes1[i]);
+						}
+						if(nodes1[i].id==json.mainCenterChanged){
+							console.log("现在的主中心");
+							nodes1[i].size=3;
+							console.log(nodes1[i]);
+							maincenter=nodes1[i];
+						}
+					}
+				}
+				console.log(tmp);
+				tmp.updateData();
+				refresh();
+				if(maincenter.id){
+					accessCenterNode(maincenter.id, maincenter.group,maincenter.size);
+				}
+			}
+			else if(json.log){
+				console.log(json);
+				var loginfo = json.log;
+				console.log(loginfo);
+				if(loginfo.success){
+					var sucessinfo = loginfo.success;
+					donghua(sucessinfo.localIp,sucessinfo.remoteIp);
+					insert(sucessinfo.message);
+				}
+				else if(loginfo.failure){
+					var failureinfo = loginfo.failure;
+					var edges = tmp.data.edges;
+					for(var i = 0;i<edges.length;i++){
+						if((edges[i].id1==failureinfo.localIp&&edges[i].id2==failureinfo.remoteIp)||(edges[i].id1==failureinfo.remoteIp&&edges[i].id2==failureinfo.localIp)){
+							 tmp.data.edges[i].color = 'rgb(105,105,105)';
+				 			 tmp.updateData();
+						}
+					}	
+					insert(failureinfo.message);
+				}
+				else{
+				}
+			}
+			else{			
+				var cx2 = new CanvasXpress('main',json,
+				  {	'backgroundGradient1Color': 'rgb(0,0,0)',
+			          'backgroundGradient2Color': 'rgb(0,0,0)',
+			          'gradient': true,
+			          'graphType': 'Network',
+					  'canvasBoxColor' : 'rgb(0,0,0)',
+			          'indicatorCenter': 'rainbow',
+					  'decorationsPosition': 'top',
+			          'nodeFontColor': 'rgb(255,255,255)',
+			          'showAnimation': true},
+					{
+				  
+				  'click' : function(o, e, t) {
+					document.getElementById("sidebar-statu").style.display = 'block';
+					if(o.nodes[0].group==0){  //用户系统	
+						accessSysNode(o.nodes[0].id, o.nodes[0].group)}	
+					else if(o.nodes[0].group==1){  //数据访问节点	
+						accessANode(o.nodes[0].id, o.nodes[0].group)}
+					else { 	//数据中心
+						accessCenterNode(o.nodes[0].id, o.nodes[0].group,o.nodes[0].size);}	
+										
+					var msgBox = document.getElementById('sidebar-statu');
+					var closeBtn = document.getElementById('closeButton');
+					closeBtn.onclick=function(){
+						msgBox.style.display = 'none';}
+				  }
+			 }
+			);
+			tmp = cx2;
+		}		
+	}
+
+		function onOpen(event) {
+			webSocket.send('hello');
+			console.log("connection conn");
+		}
+
+		function onError(event) {
+			alert(event.data);
+		}
+		function accessCenterNode(){
+			var centerNode =  findDataAccess(arguments[0], arguments[1]);
+			document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+'数据中心'+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>'+centerNode.ip+'</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>'+centerNode.centerType+'</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>'+centerNode.position+'</td></tr><tr><td><span class="label">4</span></td><td>存储容量</td><td>'+centerNode.capacity+'</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>'+centerNode.serverCapacity+'</td></tr></table> </div>';
+		}
+		function accessANode(){
+			var ANode =  findDataAccess(arguments[0], arguments[1])
+			var html=' <div class="well sidebar-nav"><div class="nav-header">'+'数据访问节点'+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>'+ANode.ip+'</td></tr><tr><td><span class="label">2</span></td><td>访问类型</td><td>'+ANode.type+'</td></tr>'
+			var childip=ANode.userIpList;
+			for(var i =0;i<childip.length;i++){
+			console.log(childip[i])
+			var tmp=i+1;
+			var lable = tmp+2;
+			html+='<tr><td><span class="label">'+lable+'</span></td><td>用户系统'+tmp+'</td><td>'+childip[i]+'</td></tr>'
+			}			
+			html+='</table> </div>';
+			document.getElementById("sidebar-statu").innerHTML = html;
+		}
+		function accessSysNode(){
+			var sysNode =  findDataAccess(arguments[0], arguments[1])
+			//var sysNode = eval('(' + json + ')')
+			document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+'用户系统'+'<a id="closeButton" class="mo-close" title="关闭"></a>&nbsp;&nbsp;&nbsp;&nbsp</div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>'+sysNode.ip+'</td></tr><tr><td><span class="label">2</span></td><td>所属机构</td><td>'+sysNode.sub+'</td></tr><tr><td><span class="label">3</span></td><td>系统类型</td><td>'+sysNode.type+'</td></tr></table> </div>';
+		}  
+		
+		function main(){
+				console.log("xxx");
+		}
+	    function donghua(from,to,color){
+	    		var nodes = tmp.data.nodes;
+	    		console.log(from)
+	    		console.log(to)
+	    		for(var i=0;i<nodes.length;i++){
+	    			if(from==nodes[i].id){
+	    				console.log(i);
+	    				var zuobiaox = (tmp.offsetX + tmp.data.nodes[i].x) * tmp.scaleFactor;
+	    				var zuobiaoy = (tmp.offsetY + tmp.data.nodes[i].y) * tmp.scaleFactor;
+	    			}
+	    			if(to==nodes[i].id){
+	    				console.log(i);
+	    				var zuobiaox1 = (tmp.offsetX + tmp.data.nodes[i].x) * tmp.scaleFactor;
+	    				var zuobiaoy1 = (tmp.offsetY + tmp.data.nodes[i].y) * tmp.scaleFactor;   
+	    			}
+	    		}
+	  			init(10,'smear',maincanvas.width,maincanvas.height,main,LEvent.INIT);  
+	    		var meteorLayer = new LSprite();
+	    	    addChild(meteorLayer);
+	    		var meteor1 = new LSprite();
+	    		meteor1.graphics.drawArc(1,"#ff0000",[zuobiaox,zuobiaoy,3,0,2*Math.PI],true,"#888000");
+	    		
+	    		meteorLayer.addChild(meteor1);
+	    		LTweenLite.to(meteor1,0.8,{
+	    				x: zuobiaox1-zuobiaox,
+	    				y: zuobiaoy1-zuobiaoy,
+	    				onComplete:function(o){
+	    					meteorLayer.removeChild(o);
+	    					removeChild(meteorLayer);
+	    					$("#smear").empty();
+	    				}
+	    		});
+	    		var count = 1;
+	    		while(count < 400){
+	    			setTimeout(function(){
+	    				var meteor2 = new LSprite();
+	    				meteor2.graphics.drawArc(2,color,[zuobiaox,zuobiaoy,3-2*count/400,0,2*Math.PI],true,color);
+	    				meteor2.alpha = 1;
+	    				meteorLayer.addChild(meteor2);
+	    				LTweenLite.to(meteor2,0.8,{
+	    						x: zuobiaox1-zuobiaox,
+	    						y: zuobiaoy1-zuobiaoy,
+	    						onComplete:function(o){
+	    							meteorLayer.removeChild(o);
+	    						}
+	    				});
+	    			},count);
+	    			count = count +1;
+	    		}  
+	    	  }
+		
+	</script>
+</body>
+</html>

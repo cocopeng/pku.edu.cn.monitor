@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>分布式实时监控中心</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<!--easyui-->
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	<!-- network -->
+    <script src="network/asset/js/esl/esl.js"></script>
+    <script src="network/asset/js/codemirror.js"></script>
+    <script src="network/asset/js/javascript.js"></script>
+    <script src="./asset/js/ScriptEngine.js"></script>
+    <link href="network/asset/css/bootstrap.css" rel="stylesheet">
+    <link href="network/asset/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="network/asset/css/codemirror.css" rel="stylesheet">
+    <link href="network/asset/css/monokai.css" rel="stylesheet">
+    <link href="network/asset/css/echartsHome.css" rel="stylesheet">
+    <link href="network/asset/css/zTreeStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="network/css/network.css">
+    <!-- start: CSS -->
+    <link href="assets/css/retina.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/color.css" />
+
+    <link rel="stylesheet" href="assets/styles/all.css"/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+	<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+	<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.css">
+
+	<script src="asset/js/esl/esl.js"></script>
+    <script src="asset/js/codemirror.js"></script>
+	<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+
+	<!-- FAVICONS -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+	<style type="text/css">
+		body{overflow:auto}
+		.widget-body #site-stats .legend {position: absolute;top: 0px;left: 185px;}
+        .btn_group #btn_red {
+            background-image: url("asset/img/btn_red.png");
+            width: 180px;
+            height: 58px;
+            border: 0px;
+            color: #000;
+            font-size: 19px;
+            font-weight: bold;
+        }
+        .btn_group #btn_green {
+            background-image: url("asset/img/btn_green.png");
+            width: 180px;
+            height: 58px;
+            border: 0px;
+            color: #000;
+			font-size: 19px;
+            font-weight: bold;
+        }
+        .btn_group{
+            right:0;
+            bottom:56px;
+            z-index: 10;
+            position: absolute;
+        }
+        .div_warning,.div_caution{
+            width:364px;
+            right:0;
+            bottom:110px;
+            z-index: 10;
+            position: absolute;
+            display: none;
+        }
+        .table_warning,.table_caution{
+            border:#bacfe7 solid 1px;
+            background-color: #bce8f1;
+        }
+        .table_warning thead tr{
+            height: 32px;
+            background:rgba(50,150,150,1);
+        }
+        .table_caution thead tr{
+            height: 32px;
+            background:rgba(50,150,150,1);
+        }
+    </style>
+
+</head>
+<body style="min-width: 1200px; height:100%;background-color:transparent;min-height:519px;overflow:scroll;overflow:hidden;">
+
+<!--tab begin-->
+<!--
+	<div id="tt" class="easyui-tabs" style="width:100%;height:600px;opacity:1;" >
+		<div title="物理视图" data-options="closable:true" style="padding:10px">
+	-->
+<div class="easyui-layout" style="width:100%;height:100%;opacity:1;">
+
+    <div data-options="region:'west',split:true" style="width:16%;height:400px">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div id="tree" class="data-tree">
+                <div class="tree-header">
+                    <img class="header-icon1" src="./network/image/header-icon.png" alt="icon" width="22" height="22"/>
+
+                    <p style="margin-left:68px !important;">节点管理器</p>
+                    <img class="header-icon2" src="./network/image/header-icon-1.png" alt="icon" width="22"
+                         height="22"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center'" style="width:64% !important;">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',split:true,border:false"
+                 style="height:923px;overflow:scroll;overflow:hidden;">
+
+                <div class="mapGraph" style="position: relative;height:1579px;">
+                    <div id="graphic" class="col-md-8" style="height:890px;width: 1579px;">
+                        <div id="main" class="main" style="height: 890px;"></div>
+                        <div class="div_caution">
+                            <table class="table table-striped table-bordered table-condensed table-hover table_caution">
+                                <thead>
+                                <tr>
+                                    <td style="width:36px;">序号</td>
+                                    <td>报警信息</td>
+                                </tr>
+                                </thead>
+								</table>
+								<table class="table table-striped table-bordered table-condensed table-hover table_caution">
+                                <tbody>
+                                <tr>
+								<td>
+								<div id="demohq" style="overflow:hidden;height:203px;">
+								<div id="demohq1">
+								<table border="0" cellpadding="0" cellspacing="1">
+								<tbody>
+								<tr>
+                                    <td>1</td>
+                                    <td>战区电抗内存过低</td>
+									
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>全军信息服务中心(北京)内存过低</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>总部电抗CPU利用率过高</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>总部侦查CPU利用率过高</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>视频内存不足</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>气象水文内存过低</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>电磁环境内存过低</td>
+                                </tr>
+								</tbody></table></div>
+								<div id="demohq2">
+								<table border="0" cellpadding="0" cellspacing="1">
+								<tbody>
+								<tr>
+                                    <td>1</td>
+                                    <td>战区电抗内存过低</td>
+									
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>全军信息服务中心(北京)内存过低</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>总部电抗CPU利用率过高</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>总部侦查CPU利用率过高</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>视频内存不足</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>气象水文内存过低</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>电磁环境内存过低</td>
+                                </tr>
+								</tbody></table></div>
+								</div>
+								</td>
+								</tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="div_warning">
+                            <table class="table table-striped table-bordered table-condensed table-hover table_warning">
+                                <thead>
+                                <tr>
+                                    <td style="width:46px;">序号</td>
+                                    <td>警告信息</td>
+                                </tr>
+                                </thead>
+								</table>
+								<table class="table table-striped table-bordered table-condensed table-hover table_warning">
+                                <tbody>
+                                <tr>
+								<td>
+								<div id="demohq3" style="overflow:hidden;height:203px;">
+								<div id="demohq4">
+								<table border="0" cellpadding="0" cellspacing="1">
+								<tbody>
+								<tr>
+                                    <td>1</td>
+                                    <td>地理空间断开网络</td>
+									
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>区域空防断开网络</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>方向海情网络故障</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>总部技侦断开网络</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>象水文网络故障</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>总部侦查网络负载过大</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>电磁环境网络故障</td>
+                                </tr>
+								</tbody></table></div>
+								<div id="demohq5">
+								<table border="0" cellpadding="0" cellspacing="1">
+								<tbody>
+								<tr>
+                                    <td>1</td>
+                                    <td>地理空间断开网络</td>
+									
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>区域空防断开网络</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>方向海情网络故障</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>总总部技侦断开网络</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>象水文网络故障</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>总部侦查网络负载过大</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>电磁环境网络故障</td>
+                                </tr>
+								</tbody></table></div>
+								</div>
+								</td>
+								</tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="btn_group">
+                            <button id="btn_red" onclick="showCaution()">报警</button>
+                            <button id="btn_green" onclick="showWarning()">警告</button>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+                <!--/.mapGraph-->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- MAIN APP JS FILE -->
+<script src="js/app.js"></script>
+
+<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+<script src="js/plugin/flot/jquery.flot.cust.js"></script>
+
+<script src="js/plugin/flot/jquery.flot.orderBar.js"></script>
+<script src="js/plugin/flot/jquery.flot.pie.js"></script>
+<script src="js/plugin/flot/jquery.flot.tooltip.js"></script>
+
+<script type="text/javascript" src="network/asset/js/jquery.ztree-all-min.js"></script>
+<script type="text/javascript" src="asset/js/echarts-all.js"></script>
+<script type="text/javascript" src="asset/js/tab.js"></script>
+
+<script>
+window.onbeforeunload = function() {
+            var n = window.event.screenX - window.screenLeft;
+            var b = n > document.documentElement.scrollWidth-20;
+            if(b && window.event.clientY < 0 || window.event.altKey){
+                if(webSocket) {
+                	webSocket.close();
+                }
+            }else{
+                if(webSocket) {
+                	webSocket.close();
+                }
+            }
+        }
+		var nodes1=[], lines1=[], centerip=[];
+		var datacenter=[];
+		var tmpznodes;
+		var accnum=0;
+		var sysnum=0;
+	  	//ztree全局定义
+
+		//ztree test data
+		var zNode=[];
+
+		$.ajax( {
+            type : "GET",
+            url : getRootPath() + "/api/v1/ztree/ztree/centernode",
+            cache : false,
+            async : false,
+            success : function(data) {
+			//alert("success");
+                addZtreeCenterNode(data);
+                var json = eval('(' + data + ')');
+                for(var i=1;i<json.length+1;i++){
+    				datacenter.push({
+    					'name' : json[i-1].name,
+    					'address' : json[i-1].address,
+    					'createtime' : json[i-1].createtime,
+    					'ip' : json[i-1].id
+    				}
+    				);
+    		}
+                
+            },
+            error :function(data){
+			//alert("faild");
+                result= data;
+            }
+        });
+	  	
+	  	
+       $(document).ready(function(){
+	   //alert("sucbiuas");
+			
+		var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+
+		   for (var i=1;i<zNode.length+1;i++){
+				var tree_id="#ztree"+i;
+				$.fn.zTree.init($(tree_id), setting, zNode[i-1]);
+		   }
+       });
+
+       var treeidtmp;
+         function addZtreeCenterNode(data){
+	  // alert("success");
+			var json = eval('(' + data + ')');
+			treeidtmp =0;
+
+			var setting = {
+			edit: {
+				enable: false,
+				editNameSelectAll: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				onClick: zTreeOnClick
+			}
+		};
+			for(var i=1;i<json.length+1;i++){
+				nodes1.push({
+					'id' : 'Level1-'+i,
+					'name' : json[i-1].name,
+					'group' : 1,
+					'shape' : 'image',
+					'width' : 100,
+					'height' : 100,
+					'imagePath' : 'data-center.png',
+					'x':600,
+					'y':500,
+					'size':10,
+					'address' : json[i-1].address,
+					'createtime' : json[i-1].createtime,
+					'ip' : json[i-1].id,
+					'upip' : json[i-1].upip
+				}
+				);
+			}
+
+			for( var i=0;i<nodes1.length-1;i++)
+			{
+			//alert(nodes1[i].id);
+			for(var j=i+1;j<nodes1.length;j++)
+			{
+			lines1.push(
+			{
+				'id1' : nodes1[i].id,
+				'id2' : nodes1[j].id,
+				'color' : 'rgb(255,255,255)',
+				'type' : 'line'
+			});
+			}
+			}
+			for(var o in json){
+
+				centerip.push(json[o].id);
+
+				var center = '<div class="tree-header2 ztree-center" ><img class="header-icon3" id="img-1" src="./asset/ico/fy.png" alt="icon" width="16" height="19"/>'+'<p style="margin-left:55px;">'+json[o].name+'</p>'+'<img class="header-icon4" id="img-2" src="./image/arrow-2.png" alt="icon" width="16" height="16"/>'
+				document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML +center;
+				treeidtmp=treeidtmp+1;
+
+				childztree = '<div class="center-service"><div id="ztree'+treeidtmp+'" class="ztree"></div></div>'
+				document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML+childztree;
+				var treeId = '#ztree'+treeidtmp;
+
+				$.ajax( {
+            		type : "POST",
+            		url : getRootPath()+"/api/v1/ztree/childnodes?centerIp="+json[o].id,
+            		async : false,
+            		success : function(data) {
+
+                		var zNodes = data;
+						zNode.push(zNodes);
+
+						if(zNodes.length>0){
+						//alert(zNodes[0].stdname);
+						var tmp11 = 0;
+						for(var i=0;i<zNodes.length;)
+						{
+						if(zNodes[i].stdname=="访问节点")
+						{
+							accnum++;
+							nodes1.push({
+								'id' : 'Level2-'+accnum,
+							  'name' : zNodes[i].name,
+							  'group' : 2,
+							  'shape' : 'image',
+							  'width':100,
+							  'height':100,
+							  'imagePath':'data-node.png',
+							  'x':600,
+							  'y':500,
+							  'size':10,
+							  'address':zNodes[i].address,
+							  'createtime':zNodes[i].createtime,
+							  'ip':zNodes[i].id,
+							  'upip':zNodes[i].upip
+							});
+							lines1.push({
+							'id1' : nodes1[o].id,
+							'id2' : 'Level2-'+accnum,
+							'color' : 'rgb(255,255,255)',
+							'type' : 'line'
+							});
+							for(var j=i+1;j<zNodes.length;j++){
+								if(zNodes[j].stdname!="访问节点"){
+								sysnum++;
+								nodes1.push({
+								'id' : 'Level3-'+sysnum,
+							  'name' : zNodes[j].name,
+							  'group' : 3,
+							  'shape' : 'image',
+							  'width':100,
+							  'height':100,
+							  'imagePath':'sys.png',
+							  'x':600,
+							  'y':500,
+							  'size':10,
+							  'address':zNodes[j].address,
+							  'createtime':zNodes[j].createtime,
+							  'ip':zNodes[j].id,
+							  'upip':zNodes[j].upip
+								});
+								lines1.push({
+								'id1' : 'Level2-'+accnum,
+								'id2' : 'Level3-'+sysnum,
+								'color' : 'rgb(255,255,255)',
+								'type' : 'line'
+								});
+								}
+								else
+								break;
+							}
+						i=j;
+						}
+						}
+
+						}
+                         //$.fn.zTree.init($(treeId), setting, zNodes);
+                 	},
+            		error :function(data){
+                		result= data;
+            		}
+            	});
+			}
+			treerootonclick();
+		}
+
+         function treerootonclick(){
+
+    /**    	 $('.tree-header2').click(function(){
+ 				showTree();
+ 				});*/
+
+ 			$('.ztree-center').click(function(){
+ 			console.log("click ztree center");
+ 			var text=$(this).text();
+             $(this).next().toggle();
+			 var treeObj = $.fn.zTree.getZTreeObj("ztree1");
+				 treeObj.cancelSelectedNode();
+				 var treeObj = $.fn.zTree.getZTreeObj("ztree2");
+				 treeObj.cancelSelectedNode();
+				 var treeObj = $.fn.zTree.getZTreeObj("ztree3");
+				 treeObj.cancelSelectedNode();
+       		  });
+
+ 				$(document).ready(function(){
+ 					$('#ztree1_1').click(function(){
+ 						console.log("click ztree1_1");
+ 						var text=$(this).text();
+ 						 $(this).next().toggle();
+ 						 var treeObj = $.fn.zTree.getZTreeObj("ztree2");
+ 							 treeObj.cancelSelectedNode();
+ 							 var treeObj = $.fn.zTree.getZTreeObj("ztree3");
+ 							 treeObj.cancelSelectedNode();
+ 						});
+ 						});
+ 						$(document).ready(function(){
+ 					$('#ztree2_1').click(function(){
+ 						console.log("click ztree2_1");
+ 						var text=$(this).text();
+ 						 $(this).next().toggle();
+ 						 var treeObj = $.fn.zTree.getZTreeObj("ztree1");
+ 							 treeObj.cancelSelectedNode();
+ 							 var treeObj = $.fn.zTree.getZTreeObj("ztree3");
+ 							 treeObj.cancelSelectedNode();
+ 						});
+ 						});
+ 						$(document).ready(function(){
+ 					$('#ztree3_1').click(function(){
+ 						console.log("click ztree3_1");
+ 						var text=$(this).text();
+ 						 $(this).next().toggle();
+ 						 var treeObj = $.fn.zTree.getZTreeObj("ztree1");
+ 							 treeObj.cancelSelectedNode();
+ 							 var treeObj = $.fn.zTree.getZTreeObj("ztree2");
+ 							 treeObj.cancelSelectedNode();
+ 						});
+ 						});
+ 				
+ 				
+ 			$('.tree-header3').click(function(){
+             	showTree();
+        	    });
+         }
+
+		var showTree = function(){
+			var treeHeader = event.target;
+			var treeContent = event.target.nextElementSibling;
+			if(treeContent.style.display != ''){
+				treeContent.style.display = '';
+				treeHeader.style.background = "#263948";
+			}else{
+	/**			treeContent.style.display = 'block';
+				treeHeader.style.background = "#24313e";*/
+			}
+		}
+		function zTreeOnClick(event, treeId, treeNode) {
+			console.log("zTreeOnClick");
+		}
+
+		function mainonclick(){
+			$('.tree-header').click(function()
+					{
+					console.log("tree header click");
+					});
+		}
+
+		var wsUrl;
+		if (window.location.protocol == 'https:') {
+	        wsUrl = 'wss://' + window.location.host + '/monitor/websocket';
+		} else {
+	        wsUrl = 'ws://' + window.location.host + '/monitor/websocket';
+		}
+		var cx2;
+		var webSocket = new WebSocket(wsUrl);
+
+		webSocket.onerror = function(event) {
+			onError(event)
+		};
+		webSocket.onopen = function(event) {
+			onOpen(event)
+		};
+		webSocket.onmessage = function(event) {
+			onMessage(event)
+		};
+		webSocket.onclose = function(event){
+			console.log("websocket closed");
+		}
+		function onOpen(event) {
+			webSocket.send('hello');
+			console.log("connection conn");
+		}
+		function onError(event) {
+			alert(event.data);
+		}
+
+
+		function onMessage(event) {
+			var json = eval('(' + event.data + ')');
+			// var json = event.data;
+			console.log("onMessage");
+			//console.log(json);
+			console.log(event.data);
+			if(json.addNode){
+
+				
+				var node = json.addNode;
+				var edge = json.addEdge;
+				console.log("add node");
+				console.log(node);
+				console.log("add edge");
+				console.log(edge);
+				
+				//tmpcanvas.updateData();
+				//refresh();
+				var setting = {
+					edit: {
+						enable: false,
+						editNameSelectAll: true
+					},
+					data: {
+						simpleData: {
+							enable: true
+						}
+					},
+					callback: {
+						onClick: zTreeOnClick
+					}
+				};
+				
+				if(node.group==2){
+					var center = '<div class="tree-header2 ztree-center" ><img class="header-icon3" id="img-1" src="./asset/ico/fy.png" alt="icon" width="16" height="19"/>'+'<p style="margin-left:55px;">'+node.name+'</p>'
+					document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML +center;
+					treeidtmp=treeidtmp+1;
+					
+					childztree = '<div class="center-service"><div id="ztree'+treeidtmp+'" class="ztree"></div></div>'
+					document.getElementById("tree").innerHTML = document.getElementById("tree").innerHTML+childztree;
+					
+					nodes1.push({
+						'id' : 'Level1-'+treeidtmp,
+						'name' : node.name,
+						'group' : 1,
+						'shape' : 'image',
+						'width' : 100,
+						'height' : 100,
+						'imagePath' : 'data-center.png',
+						'x':600,
+						'y':500,
+						'size':10,
+						'address' : node.phyAddr,
+						'createtime' :node.createTime,
+						'ip' : node.id,
+						'upip' : node.upIpaddr,
+						'maincenter': node.mainCenter
+					}
+					);
+
+					var addznode={};
+					//zNode.push(addznode);
+					console.log("new znode");
+					console.log(zNode);
+					for (var i=1;i<zNode.length+1;i++){
+						var tree_id="#ztree"+i;
+						$.fn.zTree.init($(tree_id),setting,zNode[i-1]);
+				   }
+					treerootonclick();
+					mainonclick();
+					
+					datacenter.push({
+						'name' : node.name,
+						'address' : node.phyAddr,
+						'createtime' :node.createTime,
+						'ip' : node.id
+					});
+					
+					 var myChart = echarts.init(document.getElementById('main'));
+					    var option = {
+					        title: getTitle(),
+					        tooltip: getTooltip(),
+					        dataRange: getDataRange(),
+					        series: [
+					            {
+					                name: '动画线',
+					                type: 'map',
+					                mapType: 'china',
+					                roam: 'true',
+					                hoverable: false,
+					                clickable: false,
+					                data: [],
+					                itemStyle: {
+					                    normal: {
+					                        borderColor: 'rgba(100,255,237,1)',
+					                        borderWidth: 0.8,
+					                        areaStyle: {
+					                            color: 'rgba(0,0,0,0)'
+					                        }
+					                    },
+					                    emphasis: {
+					                        borderColor: 'rgba(100,255,237,1)',// 'rgba(100,149,237,1)',
+					                        borderWidth: 1.5
+					                    }
+					                },
+					                markLine: {
+					                    smooth: true,
+					                    symbol:['none', 'none'],
+					                    effect: {
+					                        show: true,
+					                        scaleSize: 1,
+					                        period: 30,
+					                        color: '#fff',
+					                        shadowBlur: 10
+					                    },
+					                    itemStyle: {
+					                        normal: {
+					                            borderWidth: 1.5,
+					                            lineStyle: {
+					                                type: 'solid',
+					                                shadowBlur: 10
+					                            }
+					                        }
+					                    },
+					                    data: getLineDates0()
+					                },
+					                geoCoord: getGeoCoords0()
+					            },//end series[0]动画线
+					            {
+					                name: '动画点',
+					                type: 'map',
+					                mapType: 'china',
+					                roam: 'true',
+					                hoverable: false,
+					                data: [],
+					                itemStyle: {
+					                    normal: {
+					                        borderColor: 'rgba(100,255,237,1)',
+					                        borderWidth: 0.8,
+					                        areaStyle: {
+					                            color: 'rgba(0,0,0,0)'
+					                        }
+					                    },
+					                    emphasis: {
+					                        borderColor: 'rgba(100,255,237,1)',// 'rgba(100,149,237,1)',
+					                        borderWidth: 1.5
+					                    }
+					                },
+					                markPoint: {
+					                    symbol: 'emptyCircle', //'image://../asset/ico/data-center.png', // 系列级个性化拐点图形
+					                    symbolSize: 15,
+					                    effect: {
+					                        show: true,
+					                        shadowBlur: 0
+					                    },
+					                    data: getPointDates0()
+					                },
+					                geoCoord: getGeoCoords0()
+					            },//end series[1]动画点
+					            {
+					                name: '地名标注、灰线',
+					                type: 'map',
+					                mapType: 'china',
+					                roam: 'true',
+					                hoverable: false,
+					                clickable: false,
+					                data: [],
+					                markPoint: {
+					                    symbolSize: 0,
+					                    itemStyle: {
+					                        normal: {
+					                            label: {
+					                                show: true,
+					                                textStyle: {
+					                                    fontSize: '15',
+					                                    fontFamily: '微软雅黑',
+					                                    fontWeight: 'bold'
+					                                },
+					                                formatter: function (v, a) {
+					                                    return a;
+					                                }
+					                            }
+					                        }
+					                    },
+					                    data: getPointDates1()
+					                },
+					                markLine: {//灰线
+					                    smooth: true,
+					                    symbol:['none', 'none'],
+					                    itemStyle: {
+					                        normal: {
+					                            borderWidth: 1.5,
+					                            lineStyle: {
+					                                type: 'dotted',
+					                                color: 'rgb(52,52,52)',
+					                                shadowBlur: 10
+					                            }
+					                        }
+					                    },
+					                    data: getLineDates1()
+					                }
+					            },//end series[2] 地名标注、灰线
+					            {
+					                name: '备注信息标注、正常的线',
+					                type: 'map',
+					                mapType: 'china',
+					                roam: 'true',
+					                hoverable: false,
+					                clickable: false,
+					                data: [],
+					                markLine: {//正常的线
+					                    smooth: true,
+					                    symbol:['none', 'none'],
+					                    itemStyle: {
+					                        normal: {
+					                            borderWidth: 1.5,
+					                            lineStyle: {
+					                                type: 'solid',
+					                                color: '#CC9900',
+					                                shadowBlur: 10
+					                            }
+					                        }
+					                    },
+					                    data: getLineDates2()
+					                },
+					                markPoint: {
+					                    symbolSize: 0,
+					                    itemStyle: {
+					                        normal: {
+					                            label: {
+					                                show: true,
+					                                formatter: function (v, a) {
+					                                    //console.log(v, a, 'markpoint_label');
+					                                    return a + '......';
+					                                }
+					                            }
+					                        }
+					                    },
+					                    data: getPointDates2()
+					                }
+					            },//end series[3] 备注信息标注、正常的线
+					            {
+					                name: 'down节点',
+					                type: 'map',
+					                mapType: 'china',
+					                roam: true,
+					                hoverable: false,
+					                data: [],
+					                markPoint: {
+					                    symbol: 'circle', //'image://../asset/ico/data-center.png', // 系列级个性化拐点图形
+					                    symbolSize: 30,
+					                    itemStyle:{
+					                        normal:{
+					                            color:'rgba(0,0,0,0.2)'
+					                        }
+					                    },
+					                    data: getPointDates3()
+					                }
+					            }//end series[4]down节点
+					        ]
+					    };
+
+					    myChart.on('click', eConsole1);
+					    myChart.on('dblclick', eConsole2);
+
+					    myChart.setOption(option);
+					    console.log(myChart.chart.map._mapDataMap.china.transform.baseScale)//获取地图缩放比例
+
+				}
+				
+				
+			}
+	}
+		
+
+	    var myChart = echarts.init(document.getElementById('main'));
+	    var option = {
+	        title: getTitle(),
+	        tooltip: getTooltip(),
+	        dataRange: getDataRange(),
+	        series: [
+	            {
+	                name: '动画线',
+	                type: 'map',
+	                mapType: 'china',
+	                roam: 'true',
+	                hoverable: false,
+	                clickable: false,
+	                data: [],
+	                itemStyle: {
+	                    normal: {
+	                        borderColor: 'rgba(100,255,237,1)',
+	                        borderWidth: 0.8,
+	                        areaStyle: {
+	                            color: 'rgba(0,0,0,0)'
+	                        }
+	                    },
+	                    emphasis: {
+	                        borderColor: 'rgba(100,255,237,1)',// 'rgba(100,149,237,1)',
+	                        borderWidth: 1.5
+	                    }
+	                },
+	                markLine: {
+	                    smooth: true,
+	                    symbol:['none', 'none'],
+	                    effect: {
+	                        show: true,
+	                        scaleSize: 1,
+	                        period: 10,
+	                        color: '#fff',
+	                        shadowBlur: 10
+	                    },
+	                    itemStyle: {
+	                        normal: {
+	                            borderWidth: 1.5,
+	                            lineStyle: {
+	                                type: 'solid',
+	                                shadowBlur: 10
+	                            }
+	                        }
+	                    },
+	                    data: getLineDates0()
+	                },
+	                geoCoord: getGeoCoords0()
+	            },//end series[0]动画线
+	            {
+	                name: '动画点',
+	                type: 'map',
+	                mapType: 'china',
+	                roam: 'true',
+	                hoverable: false,
+	                data: [],
+	                itemStyle: {
+	                    normal: {
+	                        borderColor: 'rgba(100,255,237,1)',
+	                        borderWidth: 0.8,
+	                        areaStyle: {
+	                            color: 'rgba(0,0,0,0)'
+	                        }
+	                    },
+	                    emphasis: {
+	                        borderColor: 'rgba(100,255,237,1)',// 'rgba(100,149,237,1)',
+	                        borderWidth: 1.5
+	                    }
+	                },
+	                markPoint: {
+	                    symbol: 'emptyCircle', //'image://../asset/ico/data-center.png', // 系列级个性化拐点图形
+	                    symbolSize: 15,
+	                    effect: {
+	                        show: true,
+	                        shadowBlur: 0
+	                    },
+	                    data: getPointDates0()
+	                },
+	                geoCoord: getGeoCoords0()
+	            },//end series[1]动画点
+	            {
+	                name: '地名标注、灰线',
+	                type: 'map',
+	                mapType: 'china',
+	                roam: 'true',
+	                hoverable: false,
+	                clickable: false,
+	                data: [],
+	                markPoint: {
+	                    symbolSize: 0,
+	                    itemStyle: {
+	                        normal: {
+	                            label: {
+	                                show: true,
+	                                textStyle: {
+	                                    fontSize: '15',
+	                                    fontFamily: '微软雅黑',
+	                                    fontWeight: 'bold'
+	                                },
+	                                formatter: function (v, a) {
+	                                    return a;
+	                                }
+	                            }
+	                        }
+	                    },
+	                    data: getPointDates1()
+	                },
+	                markLine: {//灰线
+	                    smooth: true,
+	                    symbol:['none', 'none'],
+	                    itemStyle: {
+	                        normal: {
+	                            borderWidth: 1.5,
+	                            lineStyle: {
+	                                type: 'dotted',
+	                                color: 'rgb(52,52,52)',
+	                                shadowBlur: 10
+	                            }
+	                        }
+	                    },
+	                    data: getLineDates1()
+	                }
+	            },//end series[2] 地名标注、灰线
+	            {
+	                name: '备注信息标注、正常的线',
+	                type: 'map',
+	                mapType: 'china',
+	                roam: 'true',
+	                hoverable: false,
+	                clickable: false,
+	                data: [],
+	                markLine: {//正常的线
+	                    smooth: true,
+	                    symbol:['none', 'none'],
+	                    itemStyle: {
+	                        normal: {
+	                            borderWidth: 1.5,
+	                            lineStyle: {
+	                                type: 'solid',
+	                                color: '#CC9900',
+	                                shadowBlur: 10
+	                            }
+	                        }
+	                    },
+	                    data: getLineDates2()
+	                },
+	                markPoint: {
+	                    symbolSize: 0,
+	                    itemStyle: {
+	                        normal: {
+	                            label: {
+	                                show: true,
+	                                formatter: function (v, a) {
+	                                    //console.log(v, a, 'markpoint_label');
+	                                    return a + '......';
+	                                }
+	                            }
+	                        }
+	                    },
+	                    data: getPointDates2()
+	                }
+	            },//end series[3] 备注信息标注、正常的线
+	            {
+	                name: 'down节点',
+	                type: 'map',
+	                mapType: 'china',
+	                roam: true,
+	                hoverable: false,
+	                data: [],
+	                markPoint: {
+	                    symbol: 'circle', //'image://../asset/ico/data-center.png', // 系列级个性化拐点图形
+	                    symbolSize: 30,
+	                    itemStyle:{
+	                        normal:{
+	                            color:'rgba(0,0,0,0.2)'
+	                        }
+	                    },
+	                    data: getPointDates3()
+	                }
+	            }//end series[4]down节点
+	        ]
+	    };
+
+	    myChart.on('click', eConsole1);
+	    myChart.on('dblclick', eConsole2);
+
+	    myChart.setOption(option);
+	    console.log(myChart.chart.map._mapDataMap.china.transform.baseScale)//获取地图缩放比例
+
+    function showCaution(){
+        $('.div_caution').toggle();
+        $('.div_warning').hide();
+    }
+    function showWarning(){
+        $('.div_warning').toggle();
+        $('.div_caution').hide();
+    }
+    function getTitle() {
+        var t = {};
+        t['text'] = '分布式数据服务体系';
+        t['subtext'] = '实时监控系统';
+        t['x'] = 'center';
+        t['textStyle'] = { color: '#fff' };
+        return t;
+    }
+    function getTooltip() {
+        var t = {};
+        t['trigger'] = 'item';
+        t['formatter'] = '{b}';
+        console.log(t);
+        return t;
+    }
+    function getDataRange() {
+        var dataRange = {};
+        dataRange['show'] = false;
+        dataRange['min'] = 0;
+        dataRange['max'] = 100;
+        dataRange['calculable'] = true;
+        dataRange['color'] = ['#FE8463', '#ff3333', 'orange', 'yellow', 'lime', 'aqua'];
+        return dataRange
+    }
+    //动画
+    function getLineDates0() {//获取map0的动画/节点:markline
+        var dates = [];
+		var val = 1;
+	for(var i=0;i<datacenter.length;i++){
+		for(var j=i+1;j<datacenter.length;j++){
+			var t = [];
+			t.push({name:datacenter[i].address});
+			t.push({name:datacenter[j].address,value:val*30});
+			dates.push(t);
+			val++;
+		}
+	}
+    /*
+        dates = [
+            [
+                {name: '北京'},
+                {name: '南京', value: 5}
+            ]
+        ];
+    */
+        console.log('dates',dates);
+        return dates;
+    }
+    //动画，down
+    function getLineDates1() {//获取map1的动画/节点:markline
+        var dates = [];
+		/*
+        dates = [
+            [
+                {name: '北京'},
+                {name: '广州'}
+            ],
+            [
+                {name: '南京'},
+                {name: '广州',value:20}
+            ],
+            [
+                {name: '广州'},
+                {name: '长春',value:50}
+            ],
+            [
+                {name: '广州'},
+                {name: '拉萨',value:95}
+            ]
+        ];
+		*/
+        console.log('dates',dates);
+        return dates;
+    }
+    //动画 只有线，没有动态点
+    function getLineDates2() {//获取map0的动画/节点:markline
+        var dates = [];
+        /*
+		dates = [
+            [
+                {name: '南京'},
+                {name: '长春'}
+            ],
+            [
+                {name: '南京'},
+                {name: '拉萨'}
+            ]
+        ];
+		*/
+        return dates;//succeed
+    }
+    //活跃的光圈
+    function getPointDates0() {//获取map0的动画/节点:markpoint
+        var dates = [];
+    	var place = getGeoCoords0();
+    	for(var i=0;i<datacenter.length;i++){
+
+    			for(value in place){
+    				if(datacenter[i].address==value){
+    					if(datacenter[i].address=='北京'){
+    						dates.push({name:datacenter[i].address,value:80});
+    					}else{
+    						dates.push({name:datacenter[i].address,value:20});
+    					}
+    					
+    					break;
+    				}
+    			}
+    	}
+    /*   
+    dates = [
+            {name: '北京',value:5},
+            {name: '南京',value:20}
+        ];
+    */
+        return dates;//succeed
+    }
+    //所有的标签
+    function getPointDates1() {//获取map0的动画/节点:markpoint
+        var dates = [];
+		var place = getGeoCoords0();
+	for(var i=0;i<datacenter.length;i++){
+
+			for(value in place){
+				if(datacenter[i].address==value){
+					dates.push({name:datacenter[i].address});
+					break;
+				}
+			}
+	}
+	console.log(dates);
+	/*
+	dates = [
+            {name: '北京'},
+            {name: '南京'},
+            {name: '成都'}
+        ];
+		*/
+        return dates;//succeed
+    }
+    function getPointDates2() {//获取map2的动画/节点:markpoint
+        var dates = [];
+    
+		var place = getGeoCoords0();
+		for(var i=0;i<datacenter.length;i++){
+
+				for(value in place){
+					if(datacenter[i].address==value){
+						dates.push({name:datacenter[i].name});
+						break;
+					}
+				}
+		}
+		
+		/*
+	   dates.push(
+            {name: '北京信息'},
+            {name: '南京信息'},
+            {name: '成都信息'}
+        );
+		*/
+        console.log('dates',dates);
+        return dates;
+    }
+    
+    //不活跃的光圈
+    function getPointDates3() {//获取map0的动画/节点:markpoint
+        var dates = [];
+        //var dates0 = {name: '广州'};
+        //dates.push(dates0);
+        return dates;
+    }
+    function getGeoCoords0() {//获取map0的动画/节点
+        var geoCoords = {
+            '拉萨': [90.31, 29.97],
+            '拉萨信息': [90.31, 30.97],
+            '西宁': [101.74, 36.56],
+            '西宁信息': [101.74, 37.56],
+            '福州': [119.3, 26.08],
+            '福州信息': [119.3, 27.08],
+            '南宁': [108.33, 22.84],
+            '南宁信息': [108.33, 21.84],
+            '广州': [113.23, 23.16],
+            '广州信息': [113.23, 24.16],
+            '太原': [112.53, 37.87],
+            '太原信息': [112.53, 38.87],
+            '昆明': [102.73, 25.04],
+            '昆明信息': [102.73, 26.04],
+            '海口': [110.35, 20.02],
+            '海口信息': [110.35, 21.02],
+            '沈阳': [123.38, 41.8],
+            '沈阳信息': [123.38, 42.8],
+            '银川': [106.27, 38.47],
+            '银川信息': [106.27, 39.47],
+            '南昌': [115.89, 28.68],
+            '南昌信息': [115.89, 29.68],
+            '呼和浩特': [111.65, 40.82],
+            '呼和浩特信息': [111.65, 41.82],
+            '成都': [104.06, 30.67],
+            '战区信息服务中心(成都)': [104.06, 31.67],
+            '西安': [108.95, 34.27],
+            '西安信息': [108.95, 35.27],
+            '南京': [119.98, 32.54],
+            '战区信息服务中心(南京)': [119.98, 33.54],
+            '贵阳': [106.71, 26.57],
+            '贵阳信息': [106.71, 27.57],
+            '乌鲁木齐': [87.68, 43.77],
+            '乌鲁木齐信息': [87.68, 44.77],
+            '杭州': [120.19, 30.26],
+            '杭州信息': [120.19, 31.26],
+            '兰州': [103.73, 36.03],
+            '兰州信息': [103.73, 37.03],
+            '郑州': [113.65, 34.76],
+            '郑州信息': [113.65, 35.76],
+            '哈尔滨': [126.63, 45.75],
+            '哈尔滨信息': [126.63, 46.75],
+            '长春': [125.35, 43.88],
+            '长春信息': [125.35, 44.88],
+            '石家庄': [114.48, 38.03],
+            '战区信息服务中心(石家庄)': [114.48, 39.03],
+            '济南': [117, 36.65],
+            '济南信息': [117, 37.65],
+            '保定': [115.48, 38.85],
+            '保定信息': [115.48, 39.85],
+            '长沙': [113, 28.21],
+            '长沙信息': [113, 29.21],
+            '合肥': [117.27, 31.86],
+            '合肥信息': [117.27, 32.86],
+            '武汉': [114.31, 30.52],
+            '武汉信息': [114.31, 31.52],
+            '台北': [102.62, 23.937],
+            '台北信息': [102.62, 24.937],
+            '重庆': [106.54, 29.59],
+            '重庆信息': [106.54, 30.59],
+            '北京': [116.46, 39.92],
+            '全军信息服务中心(北京)': [116.46, 40.92],
+            '天津': [117.2, 39.13],
+            '天津信息': [117.2, 40.13],
+            '上海': [121.4737, 31.2304],
+            '上海信息': [121.4737, 32.2304],
+            '香港': [114.186, 22.29],
+            '香港信息': [114.186, 22.29],
+            '澳门': [113.5575, 22.20],
+            '澳门信息': [113.5575, 23.20]
+        };
+        //console.log(geoCoords);
+        return geoCoords;
+    }
+
+    var center_name;
+    //单击事件
+    function eConsole1(param) {
+        if (param.seriesIndex == '1' || param.seriesIndex == '4') {//点击的都是动画点或down节点
+            var ztree_center_node = $('.ztree-center p');
+            var center_len = ztree_center_node.length;
+            for (var i = 0; i < center_len; i++) {
+                var istr = String(i);
+                //var ztree_center_name = ztree_center_node[i].innerHTML;
+
+                console.log('点击事件参数：', param);
+                console.log('当前点击的中心为：', param.name);
+                console.log('datacenter[i]', datacenter[i])
+
+                if (param.name == datacenter[i].address) {
+                    center_name = datacenter[i].name;
+                    var centerNode11 = '.ztree-center p:contains('+ datacenter[i].name + ')';
+                    var center11 = $(centerNode11).parent();
+                    $('#tree .center-service').hide();
+                    center11.next().show();
+                }
+            }
+        }
+    }
+    //双击事件
+    function eConsole2(param) {
+        console.log('双击事件参数:',param);
+        parent.navClick('逻辑视图',center_name);
+    }
+    window.alert=function(){}
+
+	 $(document).ready(function(){
+var speedhq=60;
+function Marqueehq(){
+  if(demohq.scrollTop==demohq1.offsetHeight){
+     demohq.scrollTop=0;
+  }else{
+     demohq.scrollTop++;
+  }
+}
+var MyMarhq=setInterval(Marqueehq,speedhq)
+demohq.onmouseover=function(){
+   clearInterval(MyMarhq)
+}
+demohq.onmouseout=function(){
+ MyMarhq=setInterval(Marqueehq,speedhq)
+}
+ });
+  $(document).ready(function(){
+var speedhq=60;
+function Marqueehq(){
+  if(demohq3.scrollTop==demohq4.offsetHeight){
+     demohq3.scrollTop=0;
+  }else{
+     demohq3.scrollTop++;
+  }
+}
+var MyMarhq=setInterval(Marqueehq,speedhq)
+demohq3.onmouseover=function(){
+   clearInterval(MyMarhq)
+}
+demohq3.onmouseout=function(){
+ MyMarhq=setInterval(Marqueehq,speedhq)
+}
+ });
+</script>
+
+</body>
+</html>

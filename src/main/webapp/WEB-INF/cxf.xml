@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+ <jaxrs:server id="ztree" address="/ztree">
+        <jaxrs:serviceBeans>
+            <ref bean="ztreeRest"/>                    
+        </jaxrs:serviceBeans>
+ </jaxrs:server>
+  <jaxrs:server id="netWork" address="/network">
+        <jaxrs:serviceBeans>
+            <ref bean="networkRest"/>                    
+        </jaxrs:serviceBeans>
+ </jaxrs:server>
+    <bean id="ztreeRest" class="pku.edu.cn.rest.Ztree"/>
+    <bean id="networkRest" class="pku.edu.cn.rest.NetWorkGraph"/>
+</beans>

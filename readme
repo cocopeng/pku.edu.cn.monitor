@@ -1,0 +1,13 @@
+资源地址
+
+添加中心节点（POST）
+http://ip:8080/monitor/api/v1/network/adddatacenternode
+
+添加访问节点（POST）
+http://ip:8080/monitor/api/v1/network/adddataaccessnode
+
+添加用户系统（POST）
+http://ip:8080/monitor/api/v1/network/addusernode
+
+主中心改变（POST）
+http://ip:8080/monitor/api/v1/network/centerchange

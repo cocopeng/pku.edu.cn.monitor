@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <title>分布式数据服务实时监控中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ECharts">
+    <meta name="author" content="linzhifeng@baidu.com">
+
+    <script src="../assets1/js/esl/esl.js"></script>
+    <script src="../assets1/js/codemirror.js"></script>
+    <script src="../assets1/js/javascript.js"></script>
+
+    <link href="../assets1/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets1/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets1/css/codemirror.css" rel="stylesheet">
+    <link href="../assets1/css/monokai.css" rel="stylesheet">
+    <link href="../assets1/css/echartsHome.css" rel="stylesheet">
+	<link href="../assets1/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+
+<!-- 	<link href="../assets1/css/glyphicons.css" rel="stylesheet"> -->
+<!-- 		<link href="../assets1s/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets1s/css/style.min.css" rel="stylesheet">
+	<link href="../assets1s/css/retina.min.css" rel="stylesheet">
+	<link href="../assets1s/css/print.css" rel="stylesheet" type="text/css" media="print"/> -->
+	
+    <link rel="shortcut icon" href="../assets1/ico/favicon.png">
+	<style>
+	
+		table {
+			*border-collapse: collapse; /* IE7 and lower */
+			border-spacing: 0;
+			width: 100%;
+			color:#ffffff;
+		}
+		.bordered {
+			border: solid #0E5BE2 0px;
+			-moz-border-radius: 6px;
+			-webkit-border-radius: 6px;
+			border-radius: 6px;
+			/*-webkit-box-shadow: 0 1px 1px #0E5BE2; 
+			-moz-box-shadow: 0 1px 1px #0E5BE2; 
+			box-shadow: 0 1px 1px #0E5BE2;*/        
+		}
+
+		.bordered tr:hover {
+			background: #18A8EC;
+			-o-transition: all 0.1s ease-in-out;
+			-webkit-transition: all 0.1s ease-in-out;
+			-moz-transition: all 0.1s ease-in-out;
+			-ms-transition: all 0.1s ease-in-out;
+			transition: all 0.1s ease-in-out;     
+		}    
+			
+		.bordered td, .bordered th {
+			/*border-left: 1px solid #ccc;
+			border-top: 1px solid #ccc;*/
+			padding: 10px;
+			text-align: left;    
+		}
+
+
+		.bordered th {
+			background-color: #0090ff;
+<!-- 			background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#0E5BE2)); -->
+<!-- 			background-image: -webkit-linear-gradient(top, #ebf3fc, #0E5BE2);
+			background-image:    -moz-linear-gradient(top, #ebf3fc, #00FBEA);
+			background-image:     -ms-linear-gradient(top, #ebf3fc, #00FBEA);
+			background-image:      -o-linear-gradient(top, #ebf3fc, #00FBEA);
+			background-image:         linear-gradient(top, #ebf3fc, #00FBEA); -->
+			-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+			-moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+			box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+			border-top: none;
+			text-shadow: 0 1px 0 rgba(255,255,255,.5);
+			font-weight:normal!important;
+		}
+
+		.bordered th:first-child {
+			<!-- background-image: -webkit-linear-gradient(top, #ebf3fc, #00FBEA); -->
+			-moz-border-radius: 6px 0 0 0;
+			-webkit-border-radius: 6px 0 0 0;
+			border-radius: 6px 0 0 0;
+		}
+		
+		.bordered td:first-child, .bordered th:first-child {
+			border-left: none;
+		}
+
+		.bordered th:last-child {
+			-moz-border-radius: 0 6px 0 0;
+			-webkit-border-radius: 0 6px 0 0;
+			border-radius: 0 6px 0 0;
+		}
+
+		.bordered tr:last-child td:first-child {
+			-moz-border-radius: 0 0 0 6px;
+			-webkit-border-radius: 0 0 0 6px;
+			border-radius: 0 0 0 6px;
+		}
+
+		.bordered tr:last-child td:last-child {
+			-moz-border-radius: 0 0 6px 0;
+			-webkit-border-radius: 0 0 6px 0;
+			border-radius: 0 0 6px 0;
+		}
+		
+
+	</style>
+
+	</head>
+
+<body style="background-color:#000000;">
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+<!--         <div class="container"> -->
+<div style=" margin:0 5px 0 5px" >
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+<!-- 		  <a href="" class="glyphicons beach_umbrella">分布式数据服务实时监控中心</a> -->
+           <a class="brand" href="#">  分布式数据服务实时监控中心</a> 
+          <div class="nav-collapse collapse">
+              <a id="forkme_banner" href="#">关于我们</a>
+              <ul class="nav">
+                <li class="active"><a href="../../../log 1.0/index.html" class="active"><i class="icon-home icon-white"></i>主页</a></li>
+<!--                 <li ><a href="../example.html" >案例</a></li>
+                <li><a href="../doc.html" >文档</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-download-alt icon-white"></i>下载 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a id="last-release-link" href=""> </a></li>
+                    <li><a href="https://github.com/ecomfe/echarts/archive/master.zip">ZIP (Latest)</a></li>
+                  </ul>
+                </li> -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">友情链接 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+<!--                     <li><a href="https://github.com/ecomfe" target="_blank">Ecom-FE</a></li>
+                    <li><a href="http://fe.baidu.com/doc/ecom/tech/topic/dv/index.html" target="_blank">Data Visualization</a></li>
+                    <li class="divider"></li>
+                    <!--li class="nav-header">Library</li  
+                    <li><a href="http://ecomfe.github.io/zrender/index.html" target="_blank">ZRender</a></li> -->
+                    <li><a href="#" target="_blank">单位主站</a></li>
+                    <li><a href="#" target="_blank">情报融合</a></li>
+                    <li><a href="#" target="_blank">标准体系管理</a></li>
+					
+                  </ul>
+                </li>
+              </ul>
+           </div><!--/.nav-collapse -->
+      </div> <!-- </div> /.container -->
+      </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar-wrapper -->
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div id="sidebar-code" class="span4" style="width:20% !important;position:absolute;left:10px;top:95px;z-index:1;">
+                <div class="well sidebar-nav">
+                    <div class="nav-header"><span id="ztreeText">树形结构</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="ztreeShow">隐藏</a></div>
+                    <div id="ztree" class="ztree">
+					</div>
+                </div><!--/.well -->
+            </div><!--/span-->
+			
+            <div id="graphic" class="span8" style="width:94% !important;">
+                <canvas id="main" width="94%" height="600px">				
+				</canvas>				
+                <div>                  
+                </div>
+            </div><!--/span-->
+			
+			<div id="sidebar-statu" class="span4" style="width:19% !important;display:none;position:absolute;right:10px;top:88px;">
+                <div class="well sidebar-nav">
+					<div class="nav-header">总体概况</div>
+                    <table class="bordered">
+						<thead>
+						<tr>
+							<th>#</th>        
+							<th>名称</th>
+							<th>状态</th>
+						</tr>
+						</thead>
+						<tr>
+							<td>1</td>        
+							<td>中心1</td>
+							<td>正常</td>
+						</tr>        
+						<tr>
+							<td>2</td>         
+							<td>中心2</td>
+							<td>挂起</td>
+						</tr>
+						<tr>
+							<td>3</td>         
+							<td>中心3</td>
+							<td>失败</td>
+						</tr>
+					</table>
+              </div><!--/.well -->
+            </div><!--/span-->
+        </div><!--/row-->
+        <hr>
+        <!-- FOOTER -->
+        <footer>
+          <p class="pull-right"><a href="#">返回顶部</a></p>
+          <p>&copy; 2014 <a href="http://www.pku.edu.cn" target="_blank">北京大学</a> &middot; <a href="https://github.com/ecomfe/echarts/blob/master/LICENSE.txt" target="_blank">授权管理</a> &middot; <a href="../changelog.html" target="_blank">联系我们</a></p>
+        </footer>
+    </div><!--/.fluid-container-->
+
+    <script src="../assets1/js/jquery.js"></script>
+    <script src="../assets1/js/bootstrap-transition.js"></script>
+    <script src="../assets1/js/bootstrap-alert.js"></script>
+    <script src="../assets1/js/bootstrap-modal.js"></script>
+    <script src="../assets1/js/bootstrap-dropdown.js"></script>
+    <script src="../assets1/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets1/js/bootstrap-tab.js"></script>
+    <script src="../assets1/js/bootstrap-tooltip.js"></script>
+    <script src="../assets1/js/bootstrap-popover.js"></script>
+    <script src="../assets1/js/bootstrap-button.js"></script>
+    <script src="../assets1/js/bootstrap-collapse.js"></script>
+    <script src="../assets1/js/bootstrap-carousel.js"></script>
+    <script src="../assets1/js/bootstrap-typeahead.js"></script>
+	<!--<script type="text/javascript" src="../assets1/js/echarts-plain-original.js"></script>-->
+	<script type="text/javascript" src="../assets1/js/jquery.ztree-all-min.js"></script>
+	<script type="text/javascript" src="../assets1/CanvasXpress/js/canvasXpress.min.js"></script>
+	<script type="text/javascript" src="../assets/js/ScriptEngine.js" ></script>
+	
+	<script type="text/javascript">
+		var webSocket = 
+			new WebSocket('ws://localhost:8080/datamanagesys/websocket');
+
+		webSocket.onerror = function(event) {
+			onError(event)
+		};
+		webSocket.onopen = function(event) {
+			onOpen(event)
+		};
+
+		webSocket.onmessage = function(event) {
+			onMessage(event)
+		};
+		var tmp = new Object();
+		function onMessage(event) {
+			var graphic = document.getElementById('graphic');
+			document.getElementById('main').width = graphic.scrollWidth;
+			var json = eval('(' + event.data + ')');
+			if(json.addNode){
+				console.log("进来了");
+				console.log(tmp);
+				var node = json.addNode;
+				console.log(node);
+				var edge = json.addEdge;
+				tmp.addNode(node,tmp.data);
+				for(var item in edge){
+					tmp.addEdge(edge[item]);
+					console.log(item);
+				}
+				tmp.updateData();
+			}
+			else{
+				console.log("初始化");
+				console.log(json)				
+				var cx2 = new CanvasXpress('main',json,
+				  {	'backgroundGradient1Color': 'rgb(0,0,0)',
+			          'backgroundGradient2Color': 'rgb(0,0,0)',
+			          'gradient': true,
+			          'graphType': 'Network',
+					  'canvasBoxColor' : 'rgb(0,0,0)',
+			          'indicatorCenter': 'rainbow',
+					  'decorationsPosition': 'top',
+			          'nodeFontColor': 'rgb(255,255,255)',
+			          'showAnimation': true},
+					 {
+				  
+				  'click' : function(o, e, t) {	
+					
+					// Do something else ...
+					document.getElementById("sidebar-statu").style.display = 'block';
+					if(o.nodes[0].group==1&&o.nodes[0].id=="Level1-1"){  //主数据中心具体信息	
+						document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+o.nodes[0].name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.10</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>主</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>北京大兴</td></tr><tr><td><span class="label">4</span></td><td>中心容量</td><td>100</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>300</td></tr></table> </div>'; }
+					else if(o.nodes[0].group==1&&o.nodes[0].id!="Level1-1"){  //从数据中心具体信息	
+						document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+o.nodes[0].name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.10</td></tr><tr><td><span class="label">2</span></td><td>主/从中心</td><td>主</td></tr><tr><td><span class="label">3</span></td><td>地理位置</td><td>北京大兴</td></tr><tr><td><span class="label">4</span></td><td>中心容量</td><td>100</td></tr><tr><td><span class="label">5</span></td><td>中心服务容量</td><td>300</td></tr></table> </div>';}
+					else if(o.nodes[0].group==2){ 	//数据访问节点具体信息	
+						document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+o.nodes[0].name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.2</td></tr><tr><td><span class="label">2</span></td><td>访问类型</td><td>情报信息库</td></tr><tr><td><span class="label">3</span></td><td>用户系统IP</td><td>192.168.124.330</td></tr></table> </div>'; }
+					else { 	//用户系统具体信息
+						document.getElementById("sidebar-statu").innerHTML = ' <div class="well sidebar-nav"><div class="nav-header">'+o.nodes[0].name+'&nbsp;&nbsp;&nbsp;&nbsp<a id="closeButton" class="mo-close" title="关闭"></a></div><table class="bordered"><thead><tr><th>#</th>        <th>监控目标</th><th>目标值</th></tr></thead><tr><td><span class="label">1</span></td><td>IP地址</td><td>192.168.124.2</td></tr><tr><td><span class="label">2</span></td><td>所属机构</td><td>机构1</td></tr><tr><td><span class="label">3</span></td><td>系统类型</td><td>类型1</td></tr><tr><td><span class="label">4</span></td><td>接口1</td><td>正常显示</td></tr><tr><td><span class="label">5</span></td><td>接口2</td><td>等待返回</td></tr><tr><td><span class="label">6</span></td><td>接口3</td><td>等待返回</td></tr><tr><td><span class="label">7</span></td><td>接口4</td><td>正常显示</td></tr></table> </div>';}
+						
+					var msgBox = document.getElementById('sidebar-statu');
+					var closeBtn = document.getElementById('closeButton');
+					closeBtn.onclick=function(){
+						msgBox.style.display = 'none';}
+				  }
+			 }
+			);
+				tmp = cx2;
+				console.log(cx2);
+		}
+			
+	}
+
+		function onOpen(event) {
+			webSocket.send('hello');
+			console.log("connection conn");
+		}
+
+		function onError(event) {
+			alert(event.data);
+		}
+	</script>
+	<script>
+	
+	function showTree(){
+		var ztree = document.getElementById('ztree');
+		var ztreeText = document.getElementById('ztreeText');
+		var ztreeShow = document.getElementById('ztreeShow');
+		if(ztreeShow.innerHTML == "隐藏"){
+			ztree.style.display = 'none';
+			ztreeText.style.display = 'none';
+			ztreeShow.innerHTML = "显示"
+		}else if(ztreeShow.innerHTML == "显示"){
+			ztree.style.display = 'block';
+			ztreeText.style.display = 'block';
+			ztreeShow.innerHTML = "隐藏";
+		}
+	}
+	document.getElementById('ztreeShow').onclick = showTree;
+	
+	function closeTable(){
+		document.getElementById("sidebar-statu").style.display = 'none';
+	}
+	
+	
+	//线动画效果
+		//ztree全局定义
+		var setting = {
+			
+			edit: {
+				enable: false,
+				editNameSelectAll: true,
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			async:{
+			    type:"post",
+				enable:true,
+				url:"ZTreeServlet.servlet"
+			},
+			callback:{
+				asyncSuccess: zTreeOnAsyncSuccess,
+				asyncError: zTreeOnAsyncError
+			}
+			
+			
+		};
+		function zTreeOnAsyncError(event, treeId, treeNode){ 
+			alert("异步加载失败!"); 
+		}
+		function zTreeOnAsyncSuccess(event, treeId, treeNode, msg){ 
+				console.log(msg);
+		}  
+		var zNodes =[]
+		$(document).ready(function(){
+			$.fn.zTree.init($("#ztree"), setting, zNodes);
+		});
+</script>
+</body>
+</html>

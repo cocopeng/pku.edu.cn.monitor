@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>分布式实时监控中心</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+
+    <!--easyui-->
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+
+    <!-- network -->
+    <script src="network/asset/js/esl/esl.js"></script>
+    <script src="network/asset/js/codemirror.js"></script>
+    <script src="network/asset/js/javascript.js"></script>
+
+    <link href="network/asset/css/bootstrap.css" rel="stylesheet">
+    <link href="network/asset/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="network/asset/css/codemirror.css" rel="stylesheet">
+    <link href="network/asset/css/monokai.css" rel="stylesheet">
+    <link href="network/asset/css/echartsHome.css" rel="stylesheet">
+    <link href="network/asset/css/zTreeStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="network/css/network.css">
+    <!-- jieshu-->
+
+    <link href="assets/css/retina.min.css" rel="stylesheet">
+
+    <!--index CSS -->
+    <link rel="stylesheet" href="assets/styles/style.css"/>
+    <link rel="stylesheet" href="assets/styles/color.css"/>
+    <link rel="stylesheet" href="assets/styles/all.css"/>
+    <link href="assets/default.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+</head>
+<body style="min-width: 1200px;">
+
+<div class="banner">
+    <img src="./img/logo.png" alt="logo" width="500px" style="margin-top:12px"/>
+    <section id="navigation">
+        <nav id="nav-wrap">
+            <ul id="topnav" class="sf-menu">
+                <li id="maintab"><a href="#">数据服务监控</a>
+                    <ul diplay=block class="test" style="max-width: 162px;">
+                        <li><a href="#">物理视图</a></li>
+                        <li><a href="#">逻辑视图</a></li>
+                        <li><a href="#">回溯视图</a></li>
+                        <li><a href="#">节点注册</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">元数据管理</a>
+                    <ul class="test" style="max-width: 162px;">
+                        <li><a href="#">元数据列表</a></li>
+                        <li><a href="#">存储元数据</a></li>
+                        <li><a href="#">节点元数据</a></li>
+                        <li><a href="#">数据描述元数据</a></li>
+                        <li><a href="#">同步元数据</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">业务数据管理</a></li>
+                <li><a href="#">基础数据管理</a></li>
+            </ul>
+        </nav>
+        <div class="navuserdiv">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="userbtn" style="background-color: inherit;border: 0;" data-toggle="dropdown" href="#">
+                        <div class="user">
+                            <span class="hello">欢迎您，</span>
+                            <span class="name">管理员!</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="clear"></div>
+    </section>
+
+</div>
+
+<!--tab begin-->
+<div style="margin:20px 0 10px 0;"></div>
+<div id='tt' class="easyui-tabs" style="width:100%;height:600px;opacity:1;">
+</div>
+
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="asset/js/tab.js"></script>
+
+
+</body>
+</html>
